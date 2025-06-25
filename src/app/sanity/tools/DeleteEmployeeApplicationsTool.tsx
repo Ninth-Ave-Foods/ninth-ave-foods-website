@@ -17,19 +17,24 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
         const response = await fetch("/api/sanity-get-employee-applications");
         if (response.ok) {
           const data = await response.json();
-          setApplications(data);
 
-          const jobPositionIds = data
-            .map((app: any) => app.jobPositionID?._ref)
-            .filter(Boolean);
+          if (Array.isArray(data)) {
+            setApplications(data);
 
-          fetchJobPositions(jobPositionIds);
+            const jobPositionIds = data
+              .map((app: any) => app.jobPositionID?._ref)
+              .filter(Boolean);
+
+            await fetchJobPositions(jobPositionIds);
+          } else {
+            setApplications([]); // Make sure table doesn’t crash
+          }
         } else {
           setStatus("Failed to fetch applications");
         }
       } catch (error) {
         console.error("Error fetching applications:", error);
-        setStatus("Error fetching applications.");
+        setStatus("Error fetching applications: " + String(error));
       }
     };
 
@@ -38,37 +43,37 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
 
   const fetchJobPositions = async (ids: string[]) => {
     const uniqueIds = [...new Set(ids)];
+
+    const idsToFetch = uniqueIds.filter((id) => !jobPositions[id]);
+
+    if (idsToFetch.length === 0) return;
+
     const newJobPositions: Record<
       string,
       { jobTitle: string; location: string }
     > = {};
 
-    for (const id of uniqueIds) {
-      if (!jobPositions[id]) {
+    await Promise.all(
+      idsToFetch.map(async (id) => {
         try {
           const response = await fetch(`/api/sanity-get-job-position?id=${id}`);
-          if (response.ok) {
-            const data = await response.json();
-            newJobPositions[id] = {
-              jobTitle: data.jobTitle || "Position no longer available",
-              location: data.location || "Location not available",
-            };
-          } else {
-            newJobPositions[id] = {
-              jobTitle: "Position no longer available",
-              location: "Location not available",
-            };
-          }
+          const data = await response.json();
+          console.log("Response: ", response);
+          newJobPositions[id] = {
+            jobTitle: data.jobTitle,
+            location: data.location,
+          };
         } catch (error) {
           console.error(`Error fetching job position for ID ${id}:`, error);
           newJobPositions[id] = {
-            jobTitle: "Position no longer available",
-            location: "Location not available",
+            jobTitle: `Error fetching job position (error: ${error})`,
+            location: `Error fetching location (error: ${error})`,
           };
         }
-      }
-    }
+      }),
+    );
 
+    // Important: this merges jobPositions correctly
     setJobPositions((prev) => ({ ...prev, ...newJobPositions }));
   };
 
@@ -128,10 +133,10 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
                 Name
               </th>
               <th className="border border-gray-300 px-4 py-2 text-left">
-                Job Position
+                Job Title
               </th>
               <th className="border border-gray-300 px-4 py-2 text-left">
-                Location
+                Job Location
               </th>
               <th className="border border-gray-300 px-4 py-2 text-left">
                 Job Position ID
@@ -139,15 +144,18 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
               <th className="border border-gray-300 px-4 py-2 text-left">
                 Date of Application
               </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Is Job Position still Available?
+              </th>
             </tr>
           </thead>
           <tbody>
             {applications.map((app) => {
+              console.log("Applications: ", app);
               const jobPositionID = app.jobPositionID?._ref;
               const job = jobPositions[jobPositionID] || {};
               const isUnavailable =
-                job.jobTitle === "Position no longer available" ||
-                job.location === "Location not available";
+                job.jobTitle === undefined || job.location === undefined;
 
               return (
                 <tr key={app._id} className={isUnavailable ? "bg-red-100" : ""}>
@@ -164,27 +172,40 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
                   </td>
                   <td
                     className={`border border-gray-300 px-4 py-2 ${
-                      job.jobTitle === "Position no longer available"
-                        ? "text-red-600 font-bold"
-                        : ""
+                      job.jobTitle === "" ? "text-red-600 font-bold" : ""
                     }`}
                   >
-                    {job.jobTitle || "Loading..."}
+                    {job.jobTitle
+                      ? job.jobTitle
+                      : `${app.jobSnapshot.jobTitle}`}
                   </td>
                   <td
                     className={`border border-gray-300 px-4 py-2 ${
-                      job.location === "Location not available"
-                        ? "text-red-600 font-bold"
-                        : ""
+                      job.location === "" ? "text-red-600 font-bold" : ""
                     }`}
                   >
-                    {job.location || "Loading..."}
+                    {job.location
+                      ? job.location
+                      : `${app.jobSnapshot.jobLocation}`}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {jobPositionID || "Position no longer exists"}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {app.dateOfApplication}
+                  </td>
+
+                  <td className="border border-gray-300 px-4 py-2">
+                    {isUnavailable ? (
+                      <span>
+                        The <b>{app.jobSnapshot.jobTitle}</b> title at location{" "}
+                        <b>{app.jobSnapshot.jobLocation}</b> no longer exists
+                      </span>
+                    ) : (
+                      <span>
+                        <b>Yes</b>
+                      </span>
+                    )}
                   </td>
                 </tr>
               );

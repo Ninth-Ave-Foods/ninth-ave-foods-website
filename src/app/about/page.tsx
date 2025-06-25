@@ -123,37 +123,40 @@ const About = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center py-14 mx-[2rem]">
-          {/* Our capabilities */}
-          <Services data={capabilities} />
-          {/* Our locations */}
-          <OurLocations data={our_locations} />
+        <div className="container">
+          <div className="flex flex-col items-center justify-center py-14  mx-1">
+            {/* Our capabilities */}
+            <Services data={capabilities} />
+            {/* Our locations */}
+            <OurLocations data={our_locations} />
+          </div>
+        </div>
 
-          {/* Map */}
-          <div className="bg-light-green bg-opacity-5 w-full flex items-center justify-center">
-            <div className="flex flex-col text-center py-14">
+        {/* Map Section */}
+        <div className="bg-pastel-green w-full flex items-center justify-center">
+          <div className="flex flex-col lg:flex-row w-full">
+            {/* Left Side - Text Content */}
+            <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center mt-8">
               <h3
                 dangerouslySetInnerHTML={markdownify(contact_title)}
-                className="mb-6 text-dark-grey animate-fade animate-duration-[600ms] ease-in"
+                className="mb-1 text-dark-grey animate-fade animate-duration-[600ms] ease-in"
               />
               <p
-                className="md:pb-8 text-dark-grey text-lg animate-fade animate-delay-[200ms] ease-in"
+                className="text-dark-grey text-lg animate-fade animate-delay-[200ms] ease-in"
                 dangerouslySetInnerHTML={markdownify(contact_content)}
               />
-              <div className="relative flex items-center justify-center md:flex-row flex-col md:py-0 py-8 w-full z-0">
-                <div className="">
-                  <PointsOfContact data={data}></PointsOfContact>
-                </div>
 
-                <div className="w-full h-full">
-                  <div className="w-full lg:w-[700px] h-[400px] max-w-[700px] max-h-[450px]">
-                    <Map
-                      center={centerCoord}
-                      position1={CALIFORNIA_COORD}
-                      position2={INDIANA_COORD}
-                    />
-                  </div>
-                </div>
+              <PointsOfContact data={data} />
+            </div>
+
+            {/* Right Side - Full Height & Width Map */}
+            <div className="lg:w-4/5 w-full h-auto flex">
+              <div className="w-full h-[400px] lg:h-auto z-0">
+                <Map
+                  center={centerCoord}
+                  position1={CALIFORNIA_COORD}
+                  position2={INDIANA_COORD}
+                />
               </div>
             </div>
           </div>

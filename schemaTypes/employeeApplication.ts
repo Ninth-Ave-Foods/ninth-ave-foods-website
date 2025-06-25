@@ -18,6 +18,26 @@ const employeeApplication = defineType({
       validation: (rule) => rule.required(),
     }),
 
+    // Preserve fields
+    defineField({
+      name: "jobSnapshot",
+      type: "object",
+      title: "Job Snapshot",
+      description: "Snapshot of job data at the time of application",
+      fields: [
+        {
+          name: "jobTitle",
+          type: "string",
+          title: "Job Title",
+        },
+        {
+          name: "jobLocation",
+          type: "string",
+          title: "Job Location",
+        },
+      ],
+    }),
+
     defineField({
       name: "jobPosition",
       type: "string",
@@ -732,15 +752,19 @@ const employeeApplication = defineType({
     select: {
       fname: "fname",
       lname: "lname",
-      subtitle: "jobPositionID.jobTitle", // Show the job title of the referenced job position
+      jobTitleFromRef: "jobPositionID.jobTitle",
+      jobTitleFromSnapshot: "jobSnapshot.jobTitle",
     },
+
     prepare(selection) {
-      const { fname, lname, subtitle } = selection;
+      const { fname, lname, jobTitleFromRef, jobTitleFromSnapshot } = selection;
       return {
         title: fname ? `${fname} ${lname}` : "",
-        subtitle: subtitle
-          ? `Applied for: ${subtitle}`
-          : "No job position available",
+        subtitle: jobTitleFromRef
+          ? `Applied for: ${jobTitleFromRef}`
+          : jobTitleFromSnapshot
+            ? `Applied for: ${jobTitleFromSnapshot} (Removed)`
+            : "No data available",
       };
     },
   },

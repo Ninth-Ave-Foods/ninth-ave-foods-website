@@ -9,13 +9,13 @@ description: "this is meta description"
 
 draft: false
 contact_title: "Our Locations on the Map"
-contact_content: "We are proud to showcase our **__state-of-the-art__** manufacturing facilities. Here’s where you can find us:"
+contact_content: "We are proud to showcase our **__state-of-the-art__** manufacturing facilities\n**Here’s where you can find us:**"
 
 features:
   - title: "How It All Started"
     subtitle: ""
     image: "/images/ninth-ave-warehouse-2.jpg"
-    content: "**__Ninth Avenue Foods__** is a fourth generation family-owned and operated company with a long standing history of quality and service in the dairy industry. <i>**As innovation has led to growth and success, family values and commitment to quality has remained the same.<i>**\n\nOur new state-of-the-art **ESL manufacturing facility** and over **50 years** of experience in the industry will take your products from concept state to successful launch with ease. At **__Ninth Avenue Foods__** we offer a personal touch and do our best to go the extra mile for our customers."
+    content: "**__Ninth Avenue Foods__** is a fourth generation family-owned and operated company with a long standing history of quality and service in the dairy industry. **As innovation has led to growth and success, family values and commitment to quality has remained the same.**\n\nOur new state-of-the-art **ESL manufacturing facility** and over **50 years** of experience in the industry will take your products from concept state to successful launch with ease. At **__Ninth Avenue Foods__** we offer a personal touch and do our best to go the extra mile for our customers."
     bulletpoints: ""
     button:
       enable: true
