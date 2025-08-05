@@ -1,10 +1,8 @@
-import Image from "next/image";
-import MDXContent from "@/helpers/MDXContent";
 import PageHeader from "@/partials/PageHeader";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
-import { Feature } from "@/types";
+import { Feature, Highlight } from "@/types";
 import Link from "next/link";
 import PointsOfContact from "@/partials/PointsOfContact";
 import dynamic from "next/dynamic";
@@ -13,6 +11,7 @@ import Services from "@/partials/Services";
 import CallToAction from "@/partials/CallToAction";
 import OurLocations from "@/components/OurLocations";
 import ExpandableImage from "@/components/ExpandableImage";
+import HighlightBanner from "@/partials/HighlightBanner";
 import {
   CALIFORNIA_COORD,
   INDIANA_COORD,
@@ -35,6 +34,8 @@ const About = () => {
     contact_title,
     contact_content,
   } = frontmatter;
+  const { locations_highlight }: { locations_highlight: Highlight } =
+    frontmatter;
   const { features }: { features: Feature[] } = frontmatter;
   const centerCoord = calculateCenterCoordinates(
     CALIFORNIA_COORD,
@@ -78,7 +79,7 @@ const About = () => {
                       height={1080}
                     />
                   )}
-                  <div className="md:col-8 lg:col-6 items-center mx-auto lg:pl-16">
+                  <div className="lg:col-6 items-center mx-auto lg:pl-16">
                     <h2
                       dangerouslySetInnerHTML={markdownify(feature.title)}
                       className="mb-6 text-h3 lg:text-h2 text-dark-grey animate-fade animate-duration-[600ms] ease-in"
@@ -123,17 +124,16 @@ const About = () => {
           </div>
         </div>
 
-        <div className="container">
-          <div className="flex flex-col items-center justify-center py-14  mx-1">
-            {/* Our capabilities */}
-            <Services data={capabilities} />
-            {/* Our locations */}
+        <div className="flex flex-col items-center justify-center py-14">
+          <Services data={capabilities} />
+          <HighlightBanner data={locations_highlight} />
+          <div className="w-5/6 py-14">
             <OurLocations data={our_locations} />
           </div>
         </div>
 
         {/* Map Section */}
-        <div className="bg-pastel-green w-full flex items-center justify-center">
+        <div className="bg-pastel-green w-full flex items-center justify-center px-4">
           <div className="flex flex-col lg:flex-row w-full">
             {/* Left Side - Text Content */}
             <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center mt-8">
