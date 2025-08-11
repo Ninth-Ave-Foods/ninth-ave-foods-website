@@ -11,6 +11,7 @@ import Image from "next/image";
 import CardCarousel from "@/partials/CardCarousel";
 import Services from "@/partials/Services";
 import ExpandableImage from "@/components/ExpandableImage";
+import BulletPoints from "@/partials/BulletPoints";
 
 const { cartons_folder } = config.settings;
 
@@ -134,34 +135,7 @@ const Cartons = () => {
                     )}
                   />
                   <div className="items-center w-full md:w-auto pt-6">
-                    <ul>
-                      {sustainability_bulletpoints &&
-                        sustainability_bulletpoints.map((bullet: string) => (
-                          <li className="relative mb-5 pl-8" key={bullet}>
-                            <svg
-                              className="w-7 h-7 absolute left-0 text-[#65a30d]"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 12H5m14 0-4 4m4-4-4-4"
-                              />
-                            </svg>
-                            <span
-                              className="text-lg font-light text-dark-grey"
-                              dangerouslySetInnerHTML={markdownify(bullet)}
-                            />
-                          </li>
-                        ))}
-                    </ul>
+                    <BulletPoints bulletpoints={sustainability_bulletpoints} />
                   </div>
                 </div>
 

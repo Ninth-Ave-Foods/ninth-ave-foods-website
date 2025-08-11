@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { Our_locations } from "@/types";
 import { HiArrowLongRight } from "react-icons/hi2";
 import ExpandableImage from "./ExpandableImage";
+import BulletPoints from "@/partials/BulletPoints";
 
 interface PageData {
   frontmatter: {
@@ -69,17 +70,7 @@ const OurLocations = ({ data }: { data: PageData }) => {
                       locations.location_content,
                     )}
                   />
-                  <ul className="animate-fade-up animate-delay-[400ms] ease-in text-lg lg:col-9">
-                    {locations.bulletpoints?.map((point, i) => (
-                      <li className="relative mb-4 pl-6" key={i}>
-                        <HiArrowLongRight
-                          color="#65a30d"
-                          className={"absolute left-0 top-1.5"}
-                        />
-                        <span dangerouslySetInnerHTML={markdownify(point)} />
-                      </li>
-                    ))}
-                  </ul>
+                  <BulletPoints bulletpoints={locations.bulletpoints} />
                 </div>
               </div>
             </div>
