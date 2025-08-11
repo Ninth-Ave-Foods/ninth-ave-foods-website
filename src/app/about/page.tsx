@@ -2,29 +2,41 @@ import PageHeader from "@/partials/PageHeader";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
-import { Feature, Highlight } from "@/types";
+import { Feature, HighlightBannerProps, HighlightSectionProps } from "@/types";
 import Link from "next/link";
 import PointsOfContact from "@/partials/PointsOfContact";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import Services from "@/partials/Services";
 import CallToAction from "@/partials/CallToAction";
-import OurLocations from "@/components/OurLocations";
 import ExpandableImage from "@/components/ExpandableImage";
-import HighlightBanner from "@/partials/HighlightBanner";
 import {
   CALIFORNIA_COORD,
   INDIANA_COORD,
   calculateCenterCoordinates,
 } from "@/lib/utils/geoUtils";
+import HighlightBanner from "@/partials/HighlightBanner";
+import HighlightSection from "@/partials/HighlightSection";
+
+interface Frontmatter {
+  title: string;
+  subtitle: string;
+  meta_title: string;
+  description: string;
+  image: string;
+  contact_title: string;
+  contact_content: string;
+  features: Feature[];
+  highlight_banner: HighlightBannerProps;
+  highlights_section: HighlightSectionProps[];
+}
 
 const About = () => {
   const data = getListPage("about/_index.md");
   const capabilities = getListPage("about/capabilities.md");
   const callToAction = getListPage("sections/call-to-action.md");
-  const our_locations = getListPage("about/our_locations.md");
+  // const our_locations = getListPage("about/our_locations.md");
 
-  const { frontmatter } = data;
   const {
     title,
     subtitle,
@@ -33,10 +45,11 @@ const About = () => {
     image,
     contact_title,
     contact_content,
-  } = frontmatter;
-  const { locations_highlight }: { locations_highlight: Highlight } =
-    frontmatter;
-  const { features }: { features: Feature[] } = frontmatter;
+    features,
+    highlight_banner,
+    highlights_section,
+  } = data.frontmatter as Frontmatter;
+
   const centerCoord = calculateCenterCoordinates(
     CALIFORNIA_COORD,
     INDIANA_COORD,
@@ -126,17 +139,17 @@ const About = () => {
 
         <div className="flex flex-col items-center justify-center py-14">
           <Services data={capabilities} />
-          <HighlightBanner data={locations_highlight} />
+          <HighlightBanner data={highlight_banner} />
           <div className="w-5/6 py-14">
-            <OurLocations data={our_locations} />
+            <HighlightSection highlights={highlights_section} />
           </div>
         </div>
 
         {/* Map Section */}
-        <div className="bg-pastel-green w-full flex items-center justify-center px-4">
+        <div className="bg-pastel-green w-full flex items-center justify-center">
           <div className="flex flex-col lg:flex-row w-full">
             {/* Left Side - Text Content */}
-            <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center mt-8">
+            <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center my-8">
               <h3
                 dangerouslySetInnerHTML={markdownify(contact_title)}
                 className="mb-1 text-dark-grey animate-fade animate-duration-[600ms] ease-in"

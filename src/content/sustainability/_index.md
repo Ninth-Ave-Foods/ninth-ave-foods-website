@@ -30,46 +30,16 @@ policy_content3: "and outlines robust implementation, monitoring, and review
   processes to ensure accountability at every level of our
   business."
 
-services:
-  - image: "/images/gallery/ninth-ave-10.jpg"
-    link: "/cutting-edge-technology"
-    alt: "industrial food processing plant"
-    category: "Service"
-    title: "Cutting Edge Technology"
-    content: "Our advanced processing plant is engineered to meet and surpass the needs of a rapidly expanding industry."
-    button:
-      enable: true
-      label: "More info"
-      link: "/cutting-edge-technology"
-  - image: "/images/istock-lab-workers.jpg"
-    link: "/commitment-to-quality"
-    alt: "female lab workers"
-    category: "Service"
-    title: "Commitment to Quality"
-    content: "Food safety and quality are fundamental at Ninth Avenue Foods, guiding every aspect of our operations."
-    button:
-      enable: true
-      label: "More Info"
-      link: "/commitment-to-quality"
-  - image: "/images/gallery/gallery-2.jpg"
-    link: "/private-label-co-packing"
-    alt: "refrigerated dairy display case"
-    category: "Service"
-    title: "Private Label and Co-Packing"
-    content: "At Ninth Avenue Foods, our expertise and capabilities foster winning partnerships to elevate your products."
-    button:
-      enable: true
-      label: "More Info"
-      link: "/private-label-co-packing"
-  # Coming soon...
-  - image: "/images/istock-bottles.jpg"
-    link: "/hdpe-bottles-pet-bottles"
-    alt: "dairy bottles on conveyor line"
-    category: "Service"
-    title: "__New__ Aseptic PET Packaging Launching January 2026"
-    content: "Discover Our Advanced __**Aseptic PET Packaging**__ at Our Indiana Facility for Superior Beverage Quality and Safety."
-    button:
-      enable: true
-      label: "More Info"
-      link: "/hdpe-bottles-pet-bottles"
+highlight_banner:
+  logo: "/images/sustainability/icons/eco-light.png"
+  subtitle: "We’ve also invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."
+  detail: "Find detailed data about our sustainability efforts below."
+
+infographic: "/images/sustainability/images/2024-performance-at-a-glance.png"
+
+highlights_section:
+  - image: "/images/sustainability/images/sustainability-solar-panel.jpg"
+    alt: "City of Industry Warehouse"
+    title: "2024 Sustainability Data"
+    content: "**Sustainability isn’t just a side initiative\n—it’s a core part of how we operate every day.**\n\n\nIn 2024, we made major strides by reducing our total greenhouse gas (GHG) footprint to __**800,041 metric tons of CO₂e**__, with the majority tied to on-farm activities and supply chain inputs.\n\nThrough targeted action like methane capture, renewable energy use, and composting—we’ve avoided over __**49,000 metric tons of CO₂e**__."
 ---

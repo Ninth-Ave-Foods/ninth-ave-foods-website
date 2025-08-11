@@ -8,12 +8,35 @@ import CallToAction from "@/partials/CallToAction";
 import Button from "@/shortcodes/Button";
 import BulletPoints from "@/partials/BulletPoints";
 import SustainabilityPillars from "@/partials/SustainabilityPillars";
+import HighlightBanner from "@/partials/HighlightBanner";
+import { HighlightBannerProps, HighlightSectionProps } from "@/types";
+import HighlightSection from "@/partials/HighlightSection";
 
 const { sustainability_folder } = config.settings;
+
+interface Frontmatter {
+  title: string;
+  subtitle: string;
+  meta_title: string;
+  description: string;
+  page_header_image: string;
+  vision_title: string;
+  vision_content: string;
+  vision_content2: string;
+  policy_title: string;
+  policy_content: string;
+  policy_bulletpoints: string[];
+  policy_content2: string;
+  policy_content3: string;
+  highlight_banner: HighlightBannerProps;
+  highlights_section: HighlightSectionProps[];
+  infographic: string;
+}
 
 const Sustainability = () => {
   const data = getListPage(`${sustainability_folder}/_index.md`);
 
+  // Then you can do:
   const {
     title,
     subtitle,
@@ -28,10 +51,15 @@ const Sustainability = () => {
     policy_bulletpoints,
     policy_content2,
     policy_content3,
-  } = data.frontmatter;
+    highlight_banner,
+    highlights_section,
+    infographic,
+  } = data.frontmatter as Frontmatter;
 
   const callToAction = getListPage("sections/call-to-action.md");
-  const services = getListPage("sections/service.md");
+  const sustainabilityPillars = getListPage(
+    "sections/sustainability-pillars.md",
+  );
 
   return (
     <>
@@ -115,9 +143,22 @@ const Sustainability = () => {
               </div>
             </div>
           </div>
-
-          <SustainabilityPillars data={services}></SustainabilityPillars>
         </div>
+        <SustainabilityPillars
+          data={sustainabilityPillars}
+        ></SustainabilityPillars>
+        <HighlightBanner data={highlight_banner} />
+        <div className="container py-14">
+          <Image
+            src={infographic}
+            alt="2024 Performance at a glance inforgraphic"
+            width={1418}
+            height={1000}
+            className="pb-14"
+          />
+          <HighlightSection highlights={highlights_section} />
+        </div>
+
         <CallToAction data={callToAction}></CallToAction>
       </section>
     </>
