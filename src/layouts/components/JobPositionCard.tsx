@@ -17,7 +17,7 @@ const JobPositionCard = ({ jobPositions }: JobPositionProps) => {
           jobPositions.map((data: JobPosition) => (
             <div
               key={data._id}
-              className="flex flex-col items-center justify-between bg-light-grey shadow-md rounded-lg mb-4 md:px-10 px-5 py-3"
+              className="flex flex-col justify-between bg-light-grey shadow-md rounded-lg mb-4 md:px-10 px-5 py-3"
             >
               <div className="flex flex-col">
                 <div className="flex flex-row items-center text-center">
