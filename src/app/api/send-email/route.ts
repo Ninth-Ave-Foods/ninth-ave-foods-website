@@ -62,6 +62,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // Verify connection configuration
+    await transporter.verify();
+
     await transporter.sendMail({
       from,
       to,
