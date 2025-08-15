@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SuccessMessage from "@/partials/SubmissionMessage";
 
@@ -8,10 +8,6 @@ const ContactUsForm = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isFormSubmitted, setFormSubmitted] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("isLoading: ", isLoading);
-  }, [isLoading]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
