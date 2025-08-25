@@ -41,7 +41,7 @@ const SustainabilityPillars = ({ data }: { data: PageData }) => {
       key={index}
     >
       <div
-        className={`w-full h-[400px] md:min-w-[300px] max-w-[500px] rounded-sm bg-white flex flex-col justify-center items-center mx-auto p-4`}
+        className={`w-full md:h-[400px] h-[350px] max-w-[300px] md:min-w-[300px] md:max-w-[500px] rounded-sm bg-white flex flex-col justify-center items-center mx-auto p-4`}
       >
         <Image
           src={sustainabilityPillar.logo}

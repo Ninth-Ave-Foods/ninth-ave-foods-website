@@ -133,9 +133,9 @@ const PageHeader = ({
                   height={300}
                 />
               </div>
-              <div className="flex flex-col justify-start text-left mx-10">
-                <h1
-                  className={`${image ? "text-white" : "text-dark-grey"} `}
+              <div className="flex flex-col justify-start text-left md:mx-10">
+                <h2
+                  className={`text-h2 lg:text-h1 ${image ? "text-white" : "text-dark-grey"} `}
                   dangerouslySetInnerHTML={markdownify(title ? title : "")}
                 />
 

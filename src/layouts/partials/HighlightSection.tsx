@@ -40,7 +40,7 @@ const HighlightSection = ({
                   className="mb-8 text-dark-grey font-primary animate-fade animate-duration-[600ms] ease-in"
                 />
                 <ExpandableImage
-                  className="rounded-sm shadow-md"
+                  className="rounded-xs shadow-md"
                   src={highlight.image}
                   fill
                   alt={highlight.alt}

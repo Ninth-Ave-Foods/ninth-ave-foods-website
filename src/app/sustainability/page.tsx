@@ -1,6 +1,7 @@
 import config from "@/config/config.json";
 import { markdownify } from "@/lib/utils/textConverter";
 import Image from "next/image";
+import ExpandableImage from "@/components/ExpandableImage";
 import { getListPage } from "@/lib/contentParser";
 import PageHeader from "@/partials/PageHeader";
 import SeoMeta from "@/partials/SeoMeta";
@@ -77,16 +78,16 @@ const Sustainability = () => {
       <section className="section-sm">
         <div className="container pb-14 text-dark-grey">
           <h2
-            className="pb-2  text-dark-grey"
+            className="pb-2 text-dark-grey"
             dangerouslySetInnerHTML={markdownify(vision_title)}
           />
           <p
-            className="text-xl col-8 leading-relaxed"
+            className="text-xl md:col-8 leading-relaxed"
             dangerouslySetInnerHTML={markdownify(vision_content)}
           />
 
-          <div className="grid grid-cols-2 py-10 mx-auto gap-14">
-            <div className="w-full h-[350px] col-span-1">
+          <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
+            <div className="w-full md:h-[350px] col-span-1">
               <Image
                 src="/images/sustainability/images/sustainability-aerial-view-of-factory.jpg"
                 alt="Image header"
@@ -111,13 +112,13 @@ const Sustainability = () => {
               dangerouslySetInnerHTML={markdownify(policy_title)}
             />
             <p
-              className="text-xl col-9 leading-relaxed"
+              className="text-xl md:col-9 leading-relaxed"
               dangerouslySetInnerHTML={markdownify(policy_content)}
             />
 
-            <div className="grid grid-cols-2 gap-8">
-              <div className="col-span-1 col-10">
-                <div className="pl-14">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="col-span-1 md:col-10">
+                <div className="md:pl-14">
                   <p
                     className="text-lg pt-14 pb-4 leading-relaxed"
                     dangerouslySetInnerHTML={markdownify(policy_content2)}
@@ -132,7 +133,7 @@ const Sustainability = () => {
 
                 <Button label="Download Full Policy" link="#home" />
               </div>
-              <div className="w-full h-[500px] col-span-1">
+              <div className="w-full md:h-[500px] col-span-1">
                 <Image
                   src="/images/sustainability/images/sustainability-sustainable.jpg"
                   alt="Image header"
