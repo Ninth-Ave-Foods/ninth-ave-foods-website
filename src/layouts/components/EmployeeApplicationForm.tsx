@@ -333,7 +333,7 @@ const EmployeeApplicationForm = ({
       formData.append("jobLocation", jobLocation);
 
       // Submit the form data
-      const response = await fetch("/api/submit", {
+      const response = await fetch("/api/sanity-send-application", {
         method: "POST",
         body: formData,
       });
@@ -351,6 +351,26 @@ const EmployeeApplicationForm = ({
       } else {
         setFormSubmitted(true); // Show the overlay after success
         setIsFormValid(true);
+
+        // Now send employee applcation to email to admins
+        try {
+          const data = await response.json();
+          const emailResponse = await fetch("/api/admin-send-application", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data.application), // send JSON now
+          });
+
+          if (!emailResponse.ok) {
+            const errorData = await emailResponse.json();
+            console.error("Admin email failed:", errorData.message);
+            // No user-facing error here — since this is only for admins
+          }
+        } catch (err: any) {
+          console.error("Admin email exception:", err.message);
+        }
       }
     } catch (err) {
       const error = err as Error;

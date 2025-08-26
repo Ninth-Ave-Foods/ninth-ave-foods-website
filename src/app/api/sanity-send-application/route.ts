@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createEmployeeApplication } from "../../sanity/sanity.query";
+import { EmployeeApplication } from "@/types";
 
 const generateKey = function () {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -76,8 +77,7 @@ export async function POST(request: Request) {
     // // Log the form data for debugging
     // console.log("Form Data:", Object.fromEntries(formData.entries()));
 
-    // Send data to Sanity
-    const result = await createEmployeeApplication({
+    const application: EmployeeApplication = {
       _type: "employeeApplication",
       fname: formData.get("fname") as string,
       dateOfApplication: formData.get("dateOfApplication") as string,
@@ -204,11 +204,14 @@ export async function POST(request: Request) {
 
       electronicSignature: formData.get("electronicSignature") as string,
       todaysDate: formData.get("todaysDate") as string,
-    });
+    };
 
+    // Send data to Sanity
+    createEmployeeApplication(application);
     console.log("Successfully added data to Sanity");
     return NextResponse.json({
       message: "Employee Application updated successfully!",
+      application: application,
     });
   } catch (error) {
     const err = error as Error;
