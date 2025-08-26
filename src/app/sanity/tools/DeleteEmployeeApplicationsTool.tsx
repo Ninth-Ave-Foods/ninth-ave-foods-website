@@ -58,7 +58,6 @@ const DeleteEmployeeApplicationsToolComponent: React.FC = () => {
         try {
           const response = await fetch(`/api/sanity-get-job-position?id=${id}`);
           const data = await response.json();
-          console.log("Response: ", response);
           newJobPositions[id] = {
             jobTitle: data.jobTitle,
             location: data.location,
