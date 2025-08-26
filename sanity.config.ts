@@ -4,6 +4,7 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemaTypes";
 import { myStructure } from "./deskStructure";
 import DeleteEmployeeApplicationsTool from "@/app/sanity/tools/DeleteEmployeeApplicationsTool";
+import { DownloadPdfAction } from "@/app/sanity/plugins/DownloadPdfAction";
 
 const projectId = process.env.SANITY_PROJECT_ID;
 const dataset = process.env.SANITY_DATASET;
@@ -27,6 +28,9 @@ export default defineConfig({
     visionTool(),
   ],
   tools: [DeleteEmployeeApplicationsTool],
+  document: {
+    actions: (prev) => [...prev, DownloadPdfAction], // add our action
+  },
 
   schema: {
     types: schemaTypes,
