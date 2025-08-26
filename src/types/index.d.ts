@@ -76,6 +76,14 @@ export type Service = {
   button: Button;
 };
 
+export type SustainabilityPillar = {
+  logo: string;
+  alt: string;
+  title: string;
+  content: string;
+  button: Button;
+};
+
 export type Photo = {
   src: string;
   width: number;
@@ -173,11 +181,21 @@ export type Card = {
   button: Button;
 };
 
-export type Highlight = {
+export type HighlightBannerProps = {
   logo?: string;
   title: string;
   subtitle: string;
   detail: string;
+};
+
+export type HighlightSectionProps = {
+  title: string;
+  subtitle?: string;
+  image: string;
+  alt: string;
+  title: string;
+  content: string;
+  bulletpoints: string[];
 };
 
 export type ProfileType = {

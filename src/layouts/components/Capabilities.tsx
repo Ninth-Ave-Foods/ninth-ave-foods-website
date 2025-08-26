@@ -5,6 +5,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { useInView } from "react-intersection-observer";
 import { Capability } from "@/types";
 import ExpandableImage from "./ExpandableImage";
+import BulletPoints from "@/partials/BulletPoints";
 
 interface PageData {
   frontmatter: {
@@ -58,34 +59,7 @@ const Capabilities = ({ data }: { data: PageData }) => {
                         dangerouslySetInnerHTML={markdownify(capability.title)}
                       />
                     </div>
-                    <ul>
-                      {capability.bulletpoints &&
-                        capability.bulletpoints.map((bullet: string) => (
-                          <li className="relative mb-5 pl-8" key={bullet}>
-                            <svg
-                              className="w-7 h-7 absolute left-0 text-[#65a30d]"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 12H5m14 0-4 4m4-4-4-4"
-                              />
-                            </svg>
-                            <span
-                              className="text-lg font-light text-dark-grey"
-                              dangerouslySetInnerHTML={markdownify(bullet)}
-                            />
-                          </li>
-                        ))}
-                    </ul>
+                    <BulletPoints bulletpoints={capability.bulletpoints} />
                   </div>
 
                   {/* Right Image */}

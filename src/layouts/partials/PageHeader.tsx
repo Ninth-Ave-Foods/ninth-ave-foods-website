@@ -38,39 +38,39 @@ const PageHeader = ({
 
   return (
     <section className="relative">
-      <div className="container text-center">
-        <div
-          className={`relative rounded-2xl px-8 py-14 overflow-hidden ${
-            image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
-          }`}
-        >
-          {/* Parallax Image */}
-          {image && (
-            <div
-              className="absolute inset-0 w-full h-full"
-              style={{ zIndex: -1 }}
-            >
-              <Image
-                src={image}
-                alt="Image header"
-                fill
-                style={parallaxStyle}
-                blurDataURL="/images/image-placeholder.png"
-                className="object-cover w-full h-auto"
-                priority // Preload the image
-                quality={80} // Adjust image quality for performance
-                sizes="(min-width: 1400px) 1286px, 93.8vw"
-              />
+      {variant === "default" && (
+        <div className="container text-center pt-8">
+          <div
+            className={`relative rounded-2xl px-8 py-14 overflow-hidden ${
+              image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
+            }`}
+          >
+            {/* Parallax Image */}
+            {image && (
               <div
-                className="absolute inset-0 bg-gradient-to-r from-black/45 to-black/10"
-                style={{ zIndex: 0 }}
-              />
-            </div>
-          )}
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: -1 }}
+              >
+                <Image
+                  src={image}
+                  alt="Image header"
+                  fill
+                  style={parallaxStyle}
+                  blurDataURL="/images/image-placeholder.png"
+                  className="object-cover w-full h-auto"
+                  priority // Preload the image
+                  quality={80} // Adjust image quality for performance
+                  sizes="(min-width: 1400px) 1286px, 93.8vw"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-black/45 to-black/10"
+                  style={{ zIndex: 0 }}
+                />
+              </div>
+            )}
 
-          {/* Title, Subtitle, and Breadcrumbs */}
+            {/* Title, Subtitle, and Breadcrumbs */}
 
-          {variant === "default" && (
             <div className="relative">
               <h1 className={`${image ? "text-white" : "text-dark-grey"}`}>
                 {humanize(title)}
@@ -89,26 +89,58 @@ const PageHeader = ({
                 spanClassName={`${image ? "text-white" : "text-primary"}`}
               />
             </div>
-          )}
+          </div>
+        </div>
+      )}
 
-          {variant === "overlayTextBox" && (
-            <div className="relative">
-              <div className="absolute left-[470px] top-28">
+      {variant === "overlayTextBox" && (
+        <div className=" text-center">
+          <div
+            className={`relative px-8 py-14 overflow-hidden ${
+              image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
+            }`}
+          >
+            {/* Parallax Image */}
+            {image && (
+              <div
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: -1 }}
+              >
                 <Image
-                  src={"/images/sustainability/planet-earth.png"}
+                  src={image}
+                  alt="Image header"
+                  fill
+                  style={parallaxStyle}
+                  blurDataURL="/images/image-placeholder.png"
+                  className="object-cover w-full h-auto object-bottom brightness-10"
+                  priority // Preload the image
+                  quality={80} // Adjust image quality for performance
+                  sizes="(min-width: 1400px) 1286px, 93.8vw"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/10"
+                  style={{ zIndex: 0 }}
+                />
+              </div>
+            )}
+            <div className="relative">
+              <div className="absolute left-[510px] top-28 hidden md:block">
+                <Image
+                  src="/images/sustainability/planet-earth.png"
                   alt="Ninth Ave Foods Warehouse"
                   className="w-[150px] h-[150px]"
                   width={300}
                   height={300}
                 />
               </div>
-              <div className="flex flex-col justify-start text-left sm:col-6">
-                <h1 className={`${image ? "text-white" : "text-dark-grey"} `}>
-                  {humanize(title)}
-                </h1>
+              <div className="flex flex-col justify-start text-left md:mx-10">
+                <h2
+                  className={`text-h2 lg:text-h1 ${image ? "text-white" : "text-dark-grey"} `}
+                  dangerouslySetInnerHTML={markdownify(title ? title : "")}
+                />
 
                 <p
-                  className={`sm:text-xl bg-primary rounded-xs p-9 m-10 ${
+                  className={`sm:text-xl bg-primary md:w-[570px] rounded-xs p-14 ${
                     image ? "text-white" : "text-dark-grey"
                   }`}
                   dangerouslySetInnerHTML={markdownify(
@@ -124,9 +156,9 @@ const PageHeader = ({
                 spanClassName={`${image ? "text-white" : "text-primary"}`}
               />
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

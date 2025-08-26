@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import { Highlight } from "@/types";
+import { HighlightBannerProps } from "@/types";
 import { markdownify } from "@/lib/utils/textConverter";
 import { useInView } from "react-intersection-observer";
 
-const HighlightBanner = ({ data }: { data: Highlight }) => {
+const HighlightBanner = ({ data }: { data: HighlightBannerProps }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0, // Adjust as needed
@@ -16,33 +16,27 @@ const HighlightBanner = ({ data }: { data: Highlight }) => {
       ref={ref}
     >
       {data.logo && (
-        <div className="hidden lg:block mr-4 relative lg:left-10 xl:left-40">
-          <Image
-            height={200}
-            width={200}
-            src={data.logo}
-            alt="Logo"
-            className="h-36 w-36"
-          />
+        <div className="hidden lg:block relative lg:left-10 xl:left-40 mr-10 max-w-[150px]">
+          <Image height={200} width={200} src={data.logo} alt="Logo" />
         </div>
       )}
 
       <div className="flex flex-col items-center">
         <h2
           dangerouslySetInnerHTML={markdownify(data.title)}
-          className={`mb-6 text-white xl:col-8 col-10 ${
+          className={`mb-6 text-white xl:col-9 col-10 ${
             inView ? "animate-fade animate-duration-[600ms] ease-in" : ""
           }`}
         />
         <p
-          className={`text-white text-lg xl:col-8 col-10 ${
+          className={`text-white text-xl xl:col-9 col-10 ${
             inView ? "animate-fade animate-delay-[200ms] ease-in" : ""
           }`}
           dangerouslySetInnerHTML={markdownify(data.subtitle)}
         />
 
         <div
-          className={`flex flex-col pt-4 items-start xl:col-8 col-10 ${
+          className={`flex flex-col pt-4 items-start xl:col-9 col-10 ${
             inView ? "animate-fade animate-delay-[400ms] ease-in" : ""
           }`}
         >
