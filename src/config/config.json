@@ -26,7 +26,8 @@
     "hdpe_bottles_pet_bottles_folder": "hdpe-bottles-pet-bottles",
     "cartons_folder": "cartons",
     "corrugated_boxes_folder": "corrugated-boxes",
-    "sustainability_folder": "sustainability"
+    "sustainability_folder": "sustainability",
+    "minimizing_carbon_folder": "minimizing-carbon"
   },
 
   "params": {

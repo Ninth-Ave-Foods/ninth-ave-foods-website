@@ -96,7 +96,7 @@ const PageHeader = ({
       {variant === "overlayTextBox" && (
         <div className=" text-center">
           <div
-            className={`relative px-8 py-14 overflow-hidden ${
+            className={`relative px-8 py-14 overflow-hidden min-h-[600px] ${
               image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
             }`}
           >
@@ -155,6 +155,63 @@ const PageHeader = ({
                 }`}
                 spanClassName={`${image ? "text-white" : "text-primary"}`}
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {variant === "minimalOverlay" && (
+        <div className=" text-center">
+          <div
+            className={`relative px-8 py-14 overflow-hidden md:min-h-[600px]  min-h-[400px] ${
+              image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
+            }`}
+          >
+            {/* Parallax Image */}
+            {image && (
+              <div
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: -1 }}
+              >
+                <Image
+                  src={image}
+                  alt="Image header"
+                  fill
+                  style={parallaxStyle}
+                  blurDataURL="/images/image-placeholder.png"
+                  className="object-cover w-full h-auto object-bottom brightness-10"
+                  priority // Preload the image
+                  quality={80} // Adjust image quality for performance
+                  sizes="(min-width: 1400px) 1286px, 93.8vw"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/10"
+                  style={{ zIndex: 0 }}
+                />
+              </div>
+            )}
+            <div className="relative item">
+              <div className="absolute top-24 md:top-52 right-0 flex flex-col items-end text-right">
+                <h2
+                  className={`text-h2 lg:text-h1 md:w-[750px] text-right  ${image ? "text-white" : "text-dark-grey"}`}
+                  dangerouslySetInnerHTML={markdownify(title ? title : "")}
+                />
+
+                <p
+                  className={`sm:text-xl bg-primary rounded-xs p-3 text-right md:max-w-[960px] ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  dangerouslySetInnerHTML={markdownify(
+                    subtitle ? subtitle : "",
+                  )}
+                />
+                <Breadcrumbs
+                  className={`relative mt-6 text-lg  ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  spanClassName={`${image ? "text-white" : "text-primary"}`}
+                />
+              </div>
             </div>
           </div>
         </div>
