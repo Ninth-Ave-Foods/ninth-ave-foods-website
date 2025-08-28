@@ -111,7 +111,7 @@ const About = () => {
                         <div className="flex flex-row items-center">
                           {feature.button.label}
                           <svg
-                            className="text-primaryhover:text-white ml-1"
+                            className="hover:text-white ml-1"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="18"

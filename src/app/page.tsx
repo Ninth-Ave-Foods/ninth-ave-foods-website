@@ -131,7 +131,7 @@ const Home = () => {
         </div>
       </section>
 
-      { features.map((feature, index: number) => (
+      {features.map((feature, index: number) => (
         <section key={index} className="section-sm xl:mx-20 mx-8">
           <div className="row items-center justify-center">
             <div
@@ -175,8 +175,7 @@ const Home = () => {
                   feature.bulletpoints.map((bullet: string) => (
                     <li className="relative mb-4 pl-6" key={bullet}>
                       <FaCheck
-                        color="#65a30d"
-                        className={"absolute left-0 top-1.5"}
+                        className={"absolute left-0 top-1.5 text-lime-green"}
                       />
                       <span dangerouslySetInnerHTML={markdownify(bullet)} />
                     </li>

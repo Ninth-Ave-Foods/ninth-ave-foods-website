@@ -24,7 +24,7 @@ const BulletPoints = ({ bulletpoints }: BulletPointsProps) => {
           style={{ animationDelay: `${index * 150}ms` }} // stagger effect
         >
           <svg
-            className="w-7 h-7 absolute left-0 text-[#65a30d]"
+            className="w-7 h-7 absolute left-0 text-lime-green"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"

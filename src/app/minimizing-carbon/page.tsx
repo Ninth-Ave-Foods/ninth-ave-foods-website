@@ -76,79 +76,64 @@ const MinimizingCarbon = () => {
         variant="minimalOverlay"
       />
       <section className="section-sm">
-        <div className="container pb-14 text-dark-grey">
-          <h2
-            className="pb-2 text-dark-grey"
+        <div className="container pb-14 text-dark-grey font-secondary tracking-wide">
+          <p
+            className="pb-2 text-lime-green text-2xl leading-loose"
             dangerouslySetInnerHTML={markdownify(vision_title)}
           />
+
           <p
             className="text-xl md:col-8 leading-relaxed"
             dangerouslySetInnerHTML={markdownify(vision_content)}
           />
 
           <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
-            <div className="w-full md:h-[350px] col-span-1">
+            <div className="col-span-1 flex flex-col justify-center leading-loose col-10 pt-12">
+              <div className="flex flex-row items-center pb-16">
+                <svg
+                  className="text-dark-grey w-16 h-6 flex-shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="22 0 26 26"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.7"
+                    d="M50 12H2m50 0-4 4m4-4-4-4"
+                  />
+                </svg>
+                <h4 className="text-dark-grey font-bold font-primary">
+                  Unmatched Efficiency
+                </h4>
+              </div>
+
+              <p
+                className="text-xl leading-relaxed"
+                dangerouslySetInnerHTML={markdownify(vision_content2)}
+              />
+            </div>
+
+            <div className="w-[500px] md:h-[600px] col-span-1">
               <Image
-                src="/images/sustainability/images/sustainability-aerial-view-of-factory.jpg"
+                src="/images/gallery/ninth-ave-10.jpg"
                 alt="Image header"
                 className="w-full h-full object-cover rounded-xs"
                 width={2150}
                 height={1400}
               />
             </div>
-
-            <div className="col-span-1 flex flex-col justify-center leading-loose">
-              <p
-                className="text-lg leading-relaxed"
-                dangerouslySetInnerHTML={markdownify(vision_content2)}
-              />
-            </div>
           </div>
-
-          {/* Policy section */}
           <div className="py-14">
-            <h2
-              className="pb-2 text-dark-grey"
-              dangerouslySetInnerHTML={markdownify(policy_title)}
-            />
-            <p
-              className="text-xl md:col-9 leading-relaxed"
-              dangerouslySetInnerHTML={markdownify(policy_content)}
-            />
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="col-span-1 md:col-10">
-                <div className="md:pl-14">
-                  <p
-                    className="text-lg pt-14 pb-4 leading-relaxed"
-                    dangerouslySetInnerHTML={markdownify(policy_content2)}
-                  />
-                  <BulletPoints bulletpoints={policy_bulletpoints} />
-                </div>
-
-                <p
-                  className="text-xl py-8 leading-relaxed"
-                  dangerouslySetInnerHTML={markdownify(policy_content3)}
-                />
-
-                <Button label="Download Full Policy" link="#home" />
-              </div>
-              <div className="w-full md:h-[500px] col-span-1">
-                <Image
-                  src="/images/sustainability/images/sustainability-sustainable.jpg"
-                  alt="Image header"
-                  className="w-full h-full object-cover rounded-xs"
-                  width={2150}
-                  height={1400}
-                />
-              </div>
-            </div>
+            <HighlightSection highlights={highlights_section} />
           </div>
         </div>
         <SustainabilityPillars
           data={sustainabilityPillars}
         ></SustainabilityPillars>
-        <HighlightBanner data={highlight_banner} />
+
         <div className="container py-14">
           <Image
             src={infographic}
@@ -157,7 +142,6 @@ const MinimizingCarbon = () => {
             height={1000}
             className="pb-14"
           />
-          <HighlightSection highlights={highlights_section} />
         </div>
 
         <CallToAction data={callToAction}></CallToAction>
