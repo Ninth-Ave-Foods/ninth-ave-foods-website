@@ -24,11 +24,13 @@ interface Frontmatter {
   vision_title: string;
   vision_content: string;
   vision_content2: string;
+  vision_image: string;
   policy_title: string;
   policy_content: string;
   policy_bulletpoints: string[];
   policy_content2: string;
   policy_content3: string;
+  policy_image: string;
   highlight_banner: HighlightBannerProps;
   highlights_section: HighlightSectionProps[];
   infographic: string;
@@ -47,11 +49,13 @@ const Sustainability = () => {
     vision_title,
     vision_content,
     vision_content2,
+    vision_image,
     policy_title,
     policy_content,
     policy_bulletpoints,
     policy_content2,
     policy_content3,
+    policy_image,
     highlight_banner,
     highlights_section,
     infographic,
@@ -59,7 +63,7 @@ const Sustainability = () => {
 
   const callToAction = getListPage("sections/call-to-action.md");
   const sustainabilityPillars = getListPage(
-    "sections/sustainability-pillars.md",
+    "sections/sustainability-three-pillars.md",
   );
 
   return (
@@ -89,7 +93,7 @@ const Sustainability = () => {
           <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
             <div className="w-full md:h-[350px] col-span-1">
               <Image
-                src="/images/sustainability/images/sustainability-aerial-view-of-factory.jpg"
+                src={vision_image}
                 alt="Image header"
                 className="w-full h-full object-cover rounded-xs"
                 width={2150}
@@ -135,7 +139,7 @@ const Sustainability = () => {
               </div>
               <div className="w-full md:h-[500px] col-span-1">
                 <Image
-                  src="/images/sustainability/images/sustainability-sustainable.jpg"
+                  src={policy_image}
                   alt="Image header"
                   className="w-full h-full object-cover rounded-xs"
                   width={2150}

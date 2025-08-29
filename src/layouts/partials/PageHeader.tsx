@@ -184,7 +184,7 @@ const PageHeader = ({
                 />
 
                 <div
-                  className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/30"
+                  className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/20"
                   style={{ zIndex: 0 }}
                 />
               </div>

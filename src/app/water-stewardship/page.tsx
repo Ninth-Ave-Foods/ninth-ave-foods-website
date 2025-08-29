@@ -6,10 +6,11 @@ import PageHeader from "@/partials/PageHeader";
 import SeoMeta from "@/partials/SeoMeta";
 import CallToAction from "@/partials/CallToAction";
 import SustainabilityPillars from "@/partials/SustainabilityPillars";
-import { HighlightSectionProps } from "@/types";
+import HighlightBanner from "@/partials/HighlightBanner";
+import { HighlightSectionProps, HighlightBannerProps } from "@/types";
 import HighlightSection from "@/partials/HighlightSection";
 
-const { minimizing_carbon_folder } = config.settings;
+const { water_stewardship_folder } = config.settings;
 
 interface Frontmatter {
   title: string;
@@ -21,14 +22,15 @@ interface Frontmatter {
   vision_content: string;
   vision_content2: string;
   vision_image: string;
+  highlight_banner: HighlightBannerProps;
   highlights_section: HighlightSectionProps[];
   inforgraphic_title: string;
   infographic: string;
   infographic_alt: string;
 }
 
-const MinimizingCarbon = () => {
-  const data = getListPage(`${minimizing_carbon_folder}/_index.md`);
+const WaterStewardship = () => {
+  const data = getListPage(`${water_stewardship_folder}/_index.md`);
 
   // Then you can do:
   const {
@@ -42,6 +44,7 @@ const MinimizingCarbon = () => {
     vision_content2,
     vision_image,
     highlights_section,
+    highlight_banner,
     inforgraphic_title,
     infographic,
     infographic_alt,
@@ -67,46 +70,23 @@ const MinimizingCarbon = () => {
       />
       <section className="section-sm">
         <div className="container pb-14 text-dark-grey font-secondary tracking-wide">
-          <p
-            className="pb-2 text-lime-green text-2xl leading-loose"
-            dangerouslySetInnerHTML={markdownify(vision_title)}
-          />
-
-          <p
-            className="text-xl md:col-8 leading-relaxed"
-            dangerouslySetInnerHTML={markdownify(vision_content)}
-          />
-
           <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
-            <div className="col-span-1 flex flex-col justify-center leading-loose col-10 pt-12">
-              <div className="flex flex-row items-center pb-16">
-                <svg
-                  className="text-dark-grey w-16 h-6 flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="22 0 26 26"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.7"
-                    d="M50 12H2m50 0-4 4m4-4-4-4"
-                  />
-                </svg>
-                <h4 className="text-dark-grey font-bold font-primary">
-                  Unmatched Efficiency
-                </h4>
-              </div>
-
+            <div className="col-span-1 flex flex-col justify-center leading-loose">
+              <p
+                className="pb-4 text-lime-green text-2xl leading-loose"
+                dangerouslySetInnerHTML={markdownify(vision_title)}
+              />
+              <h5
+                className="leading-relaxed text-dark-grey pb-14 tracking-wide"
+                dangerouslySetInnerHTML={markdownify(vision_content)}
+              />
               <p
                 className="text-xl leading-relaxed"
                 dangerouslySetInnerHTML={markdownify(vision_content2)}
               />
             </div>
 
-            <div className="w-[500px] md:h-[600px] col-span-1">
+            <div className="w-[473px] md:h-[673px] col-span-1">
               <Image
                 src={vision_image}
                 alt="Image header"
@@ -116,20 +96,26 @@ const MinimizingCarbon = () => {
               />
             </div>
           </div>
-          <HighlightSection highlights={highlights_section} />
+        </div>
+        <HighlightBanner data={highlight_banner} />
 
-          <div className="mx-auto col-10 py-14">
-            <h3
-              className="font-primary pb-8"
-              dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
-            />
-            <Image
-              src={infographic}
-              alt={infographic_alt}
-              width={1418}
-              height={1000}
-            />
-          </div>
+        <h3
+          className="font-primary pb-8"
+          dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
+        />
+        <div className="w-full">
+          <Image
+            src={infographic}
+            alt={infographic_alt}
+            width={4500}
+            height={1100}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
+
+        <div className="container py-14 text-dark-grey font-secondary tracking-wide">
+          <HighlightSection highlights={highlights_section} />
         </div>
 
         <div className="pb-24">
@@ -144,4 +130,4 @@ const MinimizingCarbon = () => {
   );
 };
 
-export default MinimizingCarbon;
+export default WaterStewardship;

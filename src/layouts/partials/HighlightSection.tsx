@@ -22,7 +22,7 @@ const HighlightSection = ({
         {highlights.map((highlight: HighlightSectionProps, index) => (
           <div
             key={index}
-            className={`w-full pt-20 ${
+            className={`w-full pt-28 ${
               inView1
                 ? "animate-fade-up animate-duration-[500ms] animate-delay-[400ms]"
                 : ""
@@ -37,8 +37,15 @@ const HighlightSection = ({
               <div className="lg:h-[570px] md:h-[400px] h-[250px] sm:h-[350px] xl:w-5/6 w-full relative bottom-20">
                 <h3
                   dangerouslySetInnerHTML={markdownify(highlight.title)}
-                  className="mb-8 text-dark-grey font-primary animate-fade animate-duration-[600ms] ease-in"
+                  className="mb-4 text-dark-grey font-primary animate-fade animate-duration-[600ms] ease-in"
                 />
+                {highlight.subtitle && (
+                  <p
+                    dangerouslySetInnerHTML={markdownify(highlight.subtitle)}
+                    className="mb-2 text-dark-grey text-lg animate-fade animate-duration-[600ms] ease-in"
+                  />
+                )}
+
                 <ExpandableImage
                   className="rounded-xs shadow-md"
                   src={highlight.image}

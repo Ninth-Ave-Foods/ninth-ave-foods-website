@@ -44,13 +44,16 @@ const HighlightBanner = ({ data }: { data: HighlightBannerProps }) => {
             className="text-white text-lg"
             dangerouslySetInnerHTML={markdownify(data.detail)}
           />
-          <Image
-            height={50}
-            width={50}
-            src="/images/down-arrow.png"
-            alt="down-arrow"
-            className="flex relative h-8 w-8 right-3 mt-4"
-          />
+
+          {data.enableDownArrow && (
+            <Image
+              height={50}
+              width={50}
+              src="/images/down-arrow.png"
+              alt="down-arrow"
+              className="flex relative h-8 w-8 right-3 mt-4"
+            />
+          )}
         </div>
       </div>
     </div>

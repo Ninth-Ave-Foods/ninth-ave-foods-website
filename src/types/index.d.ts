@@ -186,6 +186,7 @@ export type HighlightBannerProps = {
   title: string;
   subtitle: string;
   detail: string;
+  enableDownArrow: boolean;
 };
 
 export type HighlightSectionProps = {
