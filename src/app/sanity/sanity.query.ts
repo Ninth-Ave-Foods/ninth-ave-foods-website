@@ -76,7 +76,7 @@ export async function createEmployeeApplication(
   try {
     // Check if the job position exists
     const jobPosition = await getJobPositionById(jobPositionID);
-    console.log("Fetched job position:", jobPosition); // Check if it exists
+    // console.log("Fetched job position:", jobPosition); // Check if it exists
     if (!jobPosition) {
       throw new Error("Job position is no longer available.");
     }
