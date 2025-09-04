@@ -221,7 +221,7 @@ export const PdfDocument = ({
         {renderField("", doc.electronicSignature)}
       </View>
       <View style={styles.section}>
-        <Text style={styles.heading}>Today's Date</Text>
+        <Text style={styles.heading}>Today`&apos;`s Date</Text>
 
         {renderField("", doc.todaysDate)}
       </View>
