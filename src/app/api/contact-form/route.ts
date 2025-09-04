@@ -1,4 +1,3 @@
-// api/send-email/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { parseEnvList } from "@/lib/PraseEnvHelpers";
@@ -10,8 +9,8 @@ export async function POST(req: NextRequest) {
   const email = formData.get("email");
   const interest = formData.get("interest");
   const message = formData.get("message");
-  const from = process.env.SMTP_FROM_EMAIL;
-  const to = parseEnvList(process.env.SMTP_TO_EMAIL);
+  const from = process.env.CONTACT_FORM_SMTP_FROM_EMAIL;
+  const to = parseEnvList(process.env.CONTACT_FORM_SMTP_TO_EMAIL);
 
   const subject = "NAF Website Customer Inquiry";
 

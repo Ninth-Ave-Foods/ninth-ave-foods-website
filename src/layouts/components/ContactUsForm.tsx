@@ -16,7 +16,7 @@ const ContactUsForm = () => {
 
     try {
       const formData = new FormData(event.currentTarget);
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/contact-form", {
         method: "POST",
         body: formData,
       });
