@@ -28,7 +28,8 @@
     "corrugated_boxes_folder": "corrugated-boxes",
     "sustainability_folder": "sustainability",
     "minimizing_carbon_folder": "minimizing-carbon",
-    "water_stewardship_folder": "water-stewardship"
+    "water_stewardship_folder": "water-stewardship",
+    "circular_economy_folder": "circular-economy"
   },
 
   "params": {
