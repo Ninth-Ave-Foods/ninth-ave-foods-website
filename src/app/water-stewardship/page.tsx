@@ -70,14 +70,14 @@ const WaterStewardship = () => {
       />
       <section className="section-sm">
         <div className="container pb-14 text-dark-grey font-secondary tracking-wide">
-          <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
+          <div className="grid md:grid-cols-2 py-10 mx-auto lg:gap-14 gap-5">
             <div className="col-span-1 flex flex-col justify-center leading-loose">
               <p
-                className="pb-4 text-lime-green text-2xl leading-loose"
+                className="pb-4 text-xl text-lime-green leading-loose"
                 dangerouslySetInnerHTML={markdownify(vision_title)}
               />
               <h5
-                className="leading-relaxed text-dark-grey pb-14 tracking-wide"
+                className="leading-relaxed text-dark-grey pb-5 lg:pb-14 tracking-wide"
                 dangerouslySetInnerHTML={markdownify(vision_content)}
               />
               <p
@@ -86,11 +86,11 @@ const WaterStewardship = () => {
               />
             </div>
 
-            <div className="w-[473px] md:h-[673px] col-span-1">
+            <div className="h-[350px] md:h-full lg:w-[473px] lg:h-[600px] col-span-1">
               <Image
                 src={vision_image}
                 alt="Image header"
-                className="w-full h-full object-cover rounded-xs"
+                className="w-full h-full object-cover object-top rounded-xs"
                 width={2150}
                 height={1400}
               />
@@ -99,23 +99,25 @@ const WaterStewardship = () => {
         </div>
         <HighlightBanner data={highlight_banner} />
 
-        <h3
-          className="font-primary pb-8"
-          dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
-        />
-        <div className="w-full">
-          <Image
-            src={infographic}
-            alt={infographic_alt}
-            width={4500}
-            height={1100}
-            className="w-full h-auto"
-            priority
-          />
+        <div className="w-full bg-theme-light py-14">
+          <div className="container">
+            <h3
+              className="font-primary pb-10 tracking-wide"
+              dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
+            />
+            <Image
+              src={infographic}
+              alt={infographic_alt}
+              width={4500}
+              height={1100}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
         </div>
 
         <div className="container py-14 text-dark-grey font-secondary tracking-wide">
-          <HighlightSection highlights={highlights_section} />
+          <HighlightSection highlights={highlights_section} reverse />
         </div>
 
         <div className="pb-24">

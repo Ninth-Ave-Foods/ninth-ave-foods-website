@@ -26,15 +26,15 @@ highlights_section:
   - image: "/images/minimizing-carbon/images/solar-panels-to-produce-green-energy.jpg"
     alt: "Solar panels against power plant"
     title: "Efficiency Innovations"
-    subtitle: "Smart technology reducing water use and increasing system efficiency."
+    content: "**Smart technology reducing water use and increasing system efficiency.**\n\n"
     bulletpoints:
-      - "One dairy employs LEPA sprinklers and VFD-driven pumps to minimize withdrawals"
-      - "Manufacturing CIP systems and advanced pasteurizers reduce municipal water demand"
+      - "One dairy employs __**LEPA sprinklers**__ and __**VFD-driven pumps**__ to minimize withdrawals\n"
+      - "Manufacturing __**CIP systems**__ and __**advanced pasteurizers**__ reduce municipal water demand"
   - image: "/images/minimizing-carbon/images/solar-panels-against-fuel.jpg"
     alt: "Solar panels lined up"
     title: "Risk Management"
-    subtitle: "Smart systems and strict compliance to protect water security."
+    content: "**Smart systems and strict compliance to protect water security.**\n\n"
     bulletpoints:
-      - "Continuous compliance with water boards in drought-prone regions"
-      - "Exploring on-farm storage and IoT leak detection to bolster resilience"
+      - "Continuous compliance with water boards in drought-prone regions\n"
+      - "Exploring on-farm storage and __**IoT leak detection**__ to bolster resilience"
 ---

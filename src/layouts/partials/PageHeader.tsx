@@ -180,7 +180,7 @@ const PageHeader = ({
                   fill
                   priority
                   sizes="100vw"
-                  className="object-cover w-full h-auto object-bottom brightness-10"
+                  className="object-cover w-full h-auto object-center brightness-10"
                 />
 
                 <div
