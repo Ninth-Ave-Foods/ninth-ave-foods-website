@@ -4,6 +4,7 @@ import { FormEvent, useState, useEffect } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SubmissionMessage from "@/partials/SubmissionMessage";
 import { Dict } from "styled-components/dist/types";
+import { generatePdfBuffer } from "@/lib/utils/generatePdfBuffer";
 
 // Dynamic employment experience
 type EmploymentExperience = {
@@ -332,8 +333,8 @@ const EmployeeApplicationForm = ({
       formData.append("jobTitle", jobTitle);
       formData.append("jobLocation", jobLocation);
 
-      // Submit the form data
-      const response = await fetch("/api/submit", {
+      // Create employee application in Sanity with the form data
+      const response = await fetch("/api/sanity-create-application", {
         method: "POST",
         body: formData,
       });
@@ -351,6 +352,50 @@ const EmployeeApplicationForm = ({
       } else {
         setFormSubmitted(true); // Show the overlay after success
         setIsFormValid(true);
+
+        // Now send employee applcation to email to admins
+        const data = await response.json();
+        const applicationData = data.application;
+
+        try {
+          // Generate the PDF as a Node Buffer
+          const pdfBuffer = await generatePdfBuffer(
+            applicationData, // pass the form/application data
+            { jobTitle: jobTitle, jobLocation: jobLocation },
+          );
+
+          // Convert the PDF buffer to Base64 for sending via API
+          const base64Pdf = pdfBuffer.toString("base64");
+          // Create a safe filename
+          const jobTitleSafe = (jobTitle || "Application").replace(/\s+/g, "-");
+          const filename = `${applicationData.fname}-${applicationData.lname}-${jobTitleSafe}.pdf`;
+
+          // Send the email
+          const emailResponse = await fetch("/api/send-employee-application", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              filename,
+              file: base64Pdf,
+            }),
+          });
+
+          if (!emailResponse.ok) {
+            const errorData = await emailResponse.json();
+            console.error(
+              "Admin employee application email failed:",
+              errorData.message,
+            );
+            // No user-facing error here — since this is only for admins
+          }
+        } catch (err: any) {
+          console.error(
+            "Admin employee application email exception:",
+            err.message,
+          );
+        }
       }
     } catch (err) {
       const error = err as Error;

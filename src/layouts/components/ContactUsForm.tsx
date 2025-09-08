@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SuccessMessage from "@/partials/SubmissionMessage";
 
@@ -9,10 +9,6 @@ const ContactUsForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isFormSubmitted, setFormSubmitted] = useState<boolean>(false);
 
-  useEffect(() => {
-    console.log("isLoading: ", isLoading);
-  }, [isLoading]);
-
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
@@ -20,7 +16,7 @@ const ContactUsForm = () => {
 
     try {
       const formData = new FormData(event.currentTarget);
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/contact-form", {
         method: "POST",
         body: formData,
       });

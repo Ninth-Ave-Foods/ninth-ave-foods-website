@@ -763,17 +763,25 @@ const employeeApplication = defineType({
       fname: "fname",
       lname: "lname",
       jobTitleFromRef: "jobPositionID.jobTitle",
+      jobLocationFromRef: "jobPositionID.location",
       jobTitleFromSnapshot: "jobSnapshot.jobTitle",
+      jobLocationFromSnapshot: "jobSnapshot.jobLocation",
     },
 
     prepare(selection) {
-      const { fname, lname, jobTitleFromRef, jobTitleFromSnapshot } = selection;
+      const {
+        fname,
+        lname,
+        jobTitleFromRef,
+        jobLocationFromRef,
+        jobTitleFromSnapshot,
+      } = selection;
       return {
         title: fname ? `${fname} ${lname}` : "",
         subtitle: jobTitleFromRef
-          ? `Applied for: ${jobTitleFromRef}`
+          ? `Applied: ${jobTitleFromRef}- ${jobLocationFromRef}`
           : jobTitleFromSnapshot
-            ? `Applied for: ${jobTitleFromSnapshot} (Removed)`
+            ? `Applied: ${jobTitleFromSnapshot} (Removed)`
             : "No data available",
       };
     },
