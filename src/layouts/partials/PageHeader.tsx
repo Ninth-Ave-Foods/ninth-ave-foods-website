@@ -161,54 +161,47 @@ const PageHeader = ({
       )}
 
       {variant === "minimalOverlay" && (
-        <div className=" text-center">
+        <div className="text-center">
           <div
-            className={`relative px-8 py-14 overflow-hidden md:min-h-[750px]  min-h-[400px] ${
+            className={`relative px-8 py-14 overflow-hidden h-[400px] md:h-[800px] ${
               image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
             }`}
           >
             {/* Parallax Image */}
             {image && (
-              <div
-                className="absolute inset-0 w-full h-full"
-                style={{ zIndex: -1 }}
-              >
+              <div className="absolute inset-0 w-full h-full z-0">
                 <Image
                   src={image}
-                  style={parallaxStyle}
                   alt="Image header"
                   fill
                   priority
-                  sizes="100vw"
-                  className="object-cover w-full h-auto object-center brightness-10"
+                  style={{ ...parallaxStyle, objectFit: "cover" }}
+                  className="object-bottom brightness-90"
                 />
-
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/20"
-                  style={{ zIndex: 0 }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/20" />
               </div>
             )}
-            <div className="relative item">
+
+            {/* Content */}
+            <div className="relative z-10">
               <div className="absolute top-24 md:top-64 right-0 flex flex-col items-end text-right">
                 <h2
-                  className={`text-h2 lg:text-h1 md:w-[750px] text-right md:pr-8 ${image ? "text-white" : "text-dark-grey"}`}
-                  dangerouslySetInnerHTML={markdownify(title ? title : "")}
-                />
-
-                <p
-                  className={`sm:text-xl bg-primary rounded-xs p-3 text-right md:max-w-[960px] ${
+                  className={`text-h2 lg:text-h1 md:w-[800px] md:pr-8 pb-4 font-primary ${
                     image ? "text-white" : "text-dark-grey"
                   }`}
-                  dangerouslySetInnerHTML={markdownify(
-                    subtitle ? subtitle : "",
-                  )}
+                  dangerouslySetInnerHTML={markdownify(title ?? "")}
+                />
+                <p
+                  className={`sm:text-xl bg-primary rounded-xs py-2 md:px-9 px-4 text-right md:max-w-[960px] font-bold ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  dangerouslySetInnerHTML={markdownify(subtitle ?? "")}
                 />
                 <Breadcrumbs
-                  className={`relative mt-6 text-lg  ${
+                  className={`relative mt-6 text-lg ${
                     image ? "text-white" : "text-dark-grey"
                   }`}
-                  spanClassName={`${image ? "text-white" : "text-primary"}`}
+                  spanClassName={image ? "text-white" : "text-primary"}
                 />
               </div>
             </div>

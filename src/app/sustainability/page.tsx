@@ -80,13 +80,13 @@ const Sustainability = () => {
         variant="overlayTextBox"
       />
       <section className="section-sm">
-        <div className="container pb-14 text-dark-grey">
+        <div className="container pb-14 text-dark-grey tracking-wide">
           <h2
-            className="pb-2 text-dark-grey"
+            className="pb-2 text-dark-grey leading-loose"
             dangerouslySetInnerHTML={markdownify(vision_title)}
           />
           <p
-            className="text-xl md:col-8 leading-relaxed"
+            className="text-xl md:col-8 leading-relaxed tracking-wide"
             dangerouslySetInnerHTML={markdownify(vision_content)}
           />
 
@@ -112,7 +112,7 @@ const Sustainability = () => {
           {/* Policy section */}
           <div className="py-14">
             <h2
-              className="pb-2 text-dark-grey"
+              className="pb-2 text-dark-grey tracking-wide"
               dangerouslySetInnerHTML={markdownify(policy_title)}
             />
             <p
@@ -154,7 +154,7 @@ const Sustainability = () => {
         ></SustainabilityPillars>
         <HighlightBanner data={highlight_banner} />
         <div className="container py-14">
-          <Image
+          <ExpandableImage
             src={infographic}
             alt="2024 Performance at a glance inforgraphic"
             width={1418}

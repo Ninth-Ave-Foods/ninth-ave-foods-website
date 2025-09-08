@@ -9,6 +9,7 @@ import SustainabilityPillars from "@/partials/SustainabilityPillars";
 import HighlightBanner from "@/partials/HighlightBanner";
 import { HighlightSectionProps, HighlightBannerProps } from "@/types";
 import HighlightSection from "@/partials/HighlightSection";
+import ExpandableImage from "@/components/ExpandableImage";
 
 const { water_stewardship_folder } = config.settings;
 
@@ -105,7 +106,7 @@ const WaterStewardship = () => {
               className="font-primary pb-10 tracking-wide"
               dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
             />
-            <Image
+            <ExpandableImage
               src={infographic}
               alt={infographic_alt}
               width={4500}

@@ -13,7 +13,7 @@ sustainabilityPillars:
     button:
       enable: true
       label: "Learn More"
-      link: ""
+      link: "/minimizing-carbon"
   - logo: "/images/sustainability/icons/waterdrop.png"
     alt: ""
     title: "Water Stewardship"
@@ -21,7 +21,7 @@ sustainabilityPillars:
     button:
       enable: true
       label: "Learn More"
-      link: "/commitment-to-quality"
+      link: "/water-stewardship"
   - logo: "/images/sustainability/icons/circular-economy.png"
     alt: ""
     title: "Circular Economy"
@@ -29,5 +29,5 @@ sustainabilityPillars:
     button:
       enable: true
       label: "Learn More"
-      link: ""
+      link: "/circular-economy"
 ---

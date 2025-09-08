@@ -8,6 +8,7 @@ import CallToAction from "@/partials/CallToAction";
 import SustainabilityPillars from "@/partials/SustainabilityPillars";
 import { HighlightSectionProps } from "@/types";
 import HighlightSection from "@/partials/HighlightSection";
+import ExpandableImage from "@/components/ExpandableImage";
 
 const { minimizing_carbon_folder } = config.settings;
 
@@ -106,7 +107,7 @@ const MinimizingCarbon = () => {
               />
             </div>
 
-            <div className="w-[500px] md:h-[600px] col-span-1">
+            <div className="w-[full md:h-[600px] col-span-1">
               <Image
                 src={vision_image}
                 alt="Image header"
@@ -118,12 +119,12 @@ const MinimizingCarbon = () => {
           </div>
           <HighlightSection highlights={highlights_section} />
 
-          <div className="mx-auto col-10 py-14">
+          <div className="mx-auto md:col-10 py-14">
             <h3
               className="font-primary pb-8"
               dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
             />
-            <Image
+            <ExpandableImage
               src={infographic}
               alt={infographic_alt}
               width={1418}

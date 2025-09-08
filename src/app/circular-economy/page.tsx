@@ -9,6 +9,7 @@ import SustainabilityPillars from "@/partials/SustainabilityPillars";
 import HighlightBanner from "@/partials/HighlightBanner";
 import { HighlightSectionProps, HighlightBannerProps } from "@/types";
 import HighlightSection from "@/partials/HighlightSection";
+import ExpandableImage from "@/components/ExpandableImage";
 
 const { circular_economy_folder } = config.settings;
 
@@ -99,25 +100,15 @@ const CircularEconomy = () => {
         </div>
         <HighlightBanner data={highlight_banner} />
 
-        <div className="w-full bg-theme-light py-14">
-          <div className="container">
-            <h3
-              className="font-primary pb-10 tracking-wide"
-              dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
-            />
-            <Image
-              src={infographic}
-              alt={infographic_alt}
-              width={4500}
-              height={1100}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
-        </div>
-
-        <div className="container py-14 text-dark-grey font-secondary tracking-wide">
-          <HighlightSection highlights={highlights_section} reverse />
+        <div className="container py-14 md:col-8">
+          <ExpandableImage
+            src={infographic}
+            alt={infographic_alt}
+            width={4500}
+            height={1100}
+            className="w-full h-auto"
+            priority
+          />
         </div>
 
         <div className="pb-24">
