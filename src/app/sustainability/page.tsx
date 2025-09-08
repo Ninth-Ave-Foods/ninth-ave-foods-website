@@ -80,7 +80,7 @@ const Sustainability = () => {
         variant="overlayTextBox"
       />
       <section className="section-sm">
-        <div className="container pb-14 text-dark-grey tracking-wide">
+        <div className="container pb-14 text-dark-grey tracking-wide font-secondary">
           <h2
             className="pb-2 text-dark-grey leading-loose animate-fade animate-duration-[900ms]"
             dangerouslySetInnerHTML={markdownify(vision_title)}
@@ -137,7 +137,7 @@ const Sustainability = () => {
 
                 <Button label="Download Full Policy" link="#home" />
               </div>
-              <div className="w-full md:h-[500px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[900ms]">
+              <div className="w-full md:h-[500px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[900ms] md:pt-6">
                 <Image
                   src={policy_image}
                   alt="Image header"

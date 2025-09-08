@@ -38,7 +38,7 @@ const HighlightSection = ({
               key={index}
               className={`w-full pt-28 ${
                 inView1
-                  ? "animate-fade-up animate-duration-[500ms] animate-delay-[400ms]"
+                  ? "animate-fade-up animate-duration-[500ms] animate-delay-[400ms] font-secondary"
                   : ""
               }`}
             >
