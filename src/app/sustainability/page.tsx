@@ -82,16 +82,16 @@ const Sustainability = () => {
       <section className="section-sm">
         <div className="container pb-14 text-dark-grey tracking-wide">
           <h2
-            className="pb-2 text-dark-grey leading-loose"
+            className="pb-2 text-dark-grey leading-loose animate-fade animate-duration-[900ms]"
             dangerouslySetInnerHTML={markdownify(vision_title)}
           />
           <p
-            className="text-xl md:col-8 leading-relaxed tracking-wide"
+            className="text-xl md:col-8 leading-relaxed tracking-wide animate-fade animate-duration-[600ms] animate-delay-[100ms]"
             dangerouslySetInnerHTML={markdownify(vision_content)}
           />
 
           <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
-            <div className="w-full md:h-[350px] col-span-1">
+            <div className="w-full md:h-[350px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[200ms]">
               <Image
                 src={vision_image}
                 alt="Image header"
@@ -101,7 +101,7 @@ const Sustainability = () => {
               />
             </div>
 
-            <div className="col-span-1 flex flex-col justify-center leading-loose">
+            <div className="col-span-1 flex flex-col justify-center leading-loose animate-fade animate-duration-[600ms] animate-delay-[300ms]">
               <p
                 className="text-lg leading-relaxed"
                 dangerouslySetInnerHTML={markdownify(vision_content2)}
@@ -112,11 +112,11 @@ const Sustainability = () => {
           {/* Policy section */}
           <div className="py-14">
             <h2
-              className="pb-2 text-dark-grey tracking-wide"
+              className="pb-2 text-dark-grey tracking-wide animate-fade animate-duration-[600ms] animate-delay-[400ms]"
               dangerouslySetInnerHTML={markdownify(policy_title)}
             />
             <p
-              className="text-xl md:col-9 leading-relaxed"
+              className="text-xl md:col-9 leading-relaxed animate-fade animate-duration-[600ms] animate-delay-[500ms]"
               dangerouslySetInnerHTML={markdownify(policy_content)}
             />
 
@@ -124,20 +124,20 @@ const Sustainability = () => {
               <div className="col-span-1 md:col-10">
                 <div className="md:pl-14">
                   <p
-                    className="text-lg pt-14 pb-4 leading-relaxed"
+                    className="text-lg pt-14 pb-4 leading-relaxed animate-fade animate-duration-[600ms] animate-delay-[600ms]"
                     dangerouslySetInnerHTML={markdownify(policy_content2)}
                   />
                   <BulletPoints bulletpoints={policy_bulletpoints} />
                 </div>
 
                 <p
-                  className="text-xl py-8 leading-relaxed"
+                  className="text-xl py-8 leading-relaxed  animate-duration-[600ms] animate-delay-[700ms]"
                   dangerouslySetInnerHTML={markdownify(policy_content3)}
                 />
 
                 <Button label="Download Full Policy" link="#home" />
               </div>
-              <div className="w-full md:h-[500px] col-span-1">
+              <div className="w-full md:h-[500px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[900ms]">
                 <Image
                   src={policy_image}
                   alt="Image header"

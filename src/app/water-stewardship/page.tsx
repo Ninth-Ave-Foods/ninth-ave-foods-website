@@ -74,20 +74,20 @@ const WaterStewardship = () => {
           <div className="grid md:grid-cols-2 py-10 mx-auto lg:gap-14 gap-5">
             <div className="col-span-1 flex flex-col justify-center leading-loose">
               <p
-                className="pb-4 text-xl text-lime-green leading-loose"
+                className="pb-4 text-xl text-lime-green leading-loose animate-fade animate-duration-[600ms]"
                 dangerouslySetInnerHTML={markdownify(vision_title)}
               />
               <h5
-                className="leading-relaxed text-dark-grey pb-5 lg:pb-14 tracking-wide"
+                className="leading-relaxed text-dark-grey pb-5 lg:pb-14 tracking-wide animate-fade animate-duration-[600ms] animate-delay-[100ms]"
                 dangerouslySetInnerHTML={markdownify(vision_content)}
               />
               <p
-                className="text-xl leading-relaxed"
+                className="text-xl leading-relaxed animate-fade animate-duration-[600ms] animate-delay-[200ms]"
                 dangerouslySetInnerHTML={markdownify(vision_content2)}
               />
             </div>
 
-            <div className="h-[350px] md:h-full lg:w-[473px] lg:h-[600px] col-span-1">
+            <div className="h-[350px] md:h-full lg:w-[473px] lg:h-[600px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[300ms]">
               <Image
                 src={vision_image}
                 alt="Image header"
@@ -100,7 +100,7 @@ const WaterStewardship = () => {
         </div>
         <HighlightBanner data={highlight_banner} />
 
-        <div className="w-full bg-theme-light py-14">
+        <div className="w-full bg-theme-light py-14 animate-fade animate-duration-[600ms] animate-delay-[500ms]">
           <div className="container">
             <h3
               className="font-primary pb-10 tracking-wide"

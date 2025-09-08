@@ -126,8 +126,8 @@ const PageHeader = ({
             <div className="relative">
               <div className="absolute left-[510px] top-28 hidden md:block">
                 <Image
-                  src="/images/sustainability/planet-earth.png"
-                  alt="Ninth Ave Foods Warehouse"
+                  src="/images/sustainability/icons/planet-earth.png"
+                  alt="Plant earth icon"
                   className="w-[150px] h-[150px]"
                   width={300}
                   height={300}

@@ -69,17 +69,17 @@ const MinimizingCarbon = () => {
       <section className="section-sm">
         <div className="container pb-14 text-dark-grey font-secondary tracking-wide">
           <p
-            className="pb-2 text-lime-green text-2xl leading-loose"
+            className="pb-2 text-lime-green text-2xl leading-loose animate-fade animate-duration-[600ms]"
             dangerouslySetInnerHTML={markdownify(vision_title)}
           />
 
           <p
-            className="text-xl md:col-8 leading-relaxed"
+            className="text-xl md:col-8 leading-relaxed animate-fade animate-duration-[600ms] animate-delay-[100ms]"
             dangerouslySetInnerHTML={markdownify(vision_content)}
           />
 
           <div className="grid md:grid-cols-2 py-10 mx-auto gap-14">
-            <div className="col-span-1 flex flex-col justify-center leading-loose col-10 pt-12">
+            <div className="col-span-1 flex flex-col justify-center leading-loose col-10 pt-12 animate-fade animate-duration-[600ms] animate-delay-[200ms]">
               <div className="flex flex-row items-center pb-16">
                 <svg
                   className="text-dark-grey w-16 h-6 flex-shrink-0"
@@ -96,7 +96,7 @@ const MinimizingCarbon = () => {
                     d="M50 12H2m50 0-4 4m4-4-4-4"
                   />
                 </svg>
-                <h4 className="text-dark-grey font-bold font-primary">
+                <h4 className="text-dark-grey font-bold font-primar animate-fade animate-duration-[600ms] animate-delay-[300ms]">
                   Unmatched Efficiency
                 </h4>
               </div>
@@ -107,7 +107,7 @@ const MinimizingCarbon = () => {
               />
             </div>
 
-            <div className="w-[full md:h-[600px] col-span-1">
+            <div className="w-[full md:h-[600px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[500ms]">
               <Image
                 src={vision_image}
                 alt="Image header"
@@ -119,7 +119,7 @@ const MinimizingCarbon = () => {
           </div>
           <HighlightSection highlights={highlights_section} />
 
-          <div className="mx-auto md:col-10 py-14">
+          <div className="mx-auto md:col-10 py-14 animate-fade animate-duration-[600ms] animate-delay-[600ms]">
             <h3
               className="font-primary pb-8"
               dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
