@@ -23,14 +23,14 @@ infographic: "/images/water-stewardship/images/closed-loop-reuse-graphic.png"
 infographic_alt: "Closed-loop reuse infographic"
 
 highlights_section:
-  - image: "/images/water-stewardship/images/pipes-and-tap-water.jpg"
+  - image: "/images/water-stewardship/images/system-with-the-self-propelled-launcher.jpg"
     alt: "Solar panels against power plant"
     title: "Efficiency Innovations"
     content: "**Smart technology reducing water use and increasing system efficiency.**\n\n"
     bulletpoints:
       - "One dairy employs __**LEPA sprinklers**__ and __**VFD-driven pumps**__ to minimize withdrawals\n"
       - "Manufacturing __**CIP systems**__ and __**advanced pasteurizers**__ reduce municipal water demand"
-  - image: "/images/water-stewardship/images/system-with-the-self-propelled-launcher.jpg"
+  - image: "/images/water-stewardship/images/pipes-and-tap-water.jpg"
     alt: "Solar panels lined up"
     title: "Risk Management"
     content: "**Smart systems and strict compliance to protect water security.**\n\n"

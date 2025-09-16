@@ -119,7 +119,7 @@ const MinimizingCarbon = () => {
           </div>
           <HighlightSection highlights={highlights_section} />
 
-          <div className="mx-auto md:col-10 py-14 animate-fade animate-duration-[600ms] animate-delay-[600ms]">
+          <div className="mx-auto md:col-10 py-14  animate-fade animate-duration-[600ms] animate-delay-[600ms]">
             <h3
               className="font-primary pb-8"
               dangerouslySetInnerHTML={markdownify(inforgraphic_title)}

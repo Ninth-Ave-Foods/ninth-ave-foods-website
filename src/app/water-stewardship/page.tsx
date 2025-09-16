@@ -103,7 +103,7 @@ const WaterStewardship = () => {
         <div className="w-full bg-theme-light py-14 animate-fade animate-duration-[600ms] animate-delay-[500ms]">
           <div className="container">
             <h3
-              className="font-primary pb-10 tracking-wide"
+              className="font-primary pb-10 tracking-wide text-dark-grey"
               dangerouslySetInnerHTML={markdownify(inforgraphic_title)}
             />
             <ExpandableImage
