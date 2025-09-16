@@ -100,7 +100,7 @@ const CircularEconomy = () => {
         </div>
         <HighlightBanner data={highlight_banner} />
 
-        <div className="container py-14 md:col-8 animate-fade animate-duration-[600ms] animate-delay-[500ms]">
+        <div className="container py-14 md:col-7 animate-fade animate-duration-[600ms] animate-delay-[500ms]">
           <ExpandableImage
             src={infographic}
             alt={infographic_alt}
