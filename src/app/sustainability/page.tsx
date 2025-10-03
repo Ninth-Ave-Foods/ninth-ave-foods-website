@@ -25,6 +25,7 @@ interface Frontmatter {
   vision_content: string;
   vision_content2: string;
   vision_image: string;
+  policy_download_link: string;
   policy_title: string;
   policy_content: string;
   policy_bulletpoints: string[];
@@ -50,6 +51,7 @@ const Sustainability = () => {
     vision_content,
     vision_content2,
     vision_image,
+    policy_download_link,
     policy_title,
     policy_content,
     policy_bulletpoints,
@@ -134,8 +136,13 @@ const Sustainability = () => {
                   className="text-xl py-8 leading-relaxed  animate-duration-[600ms] animate-delay-[700ms]"
                   dangerouslySetInnerHTML={markdownify(policy_content3)}
                 />
-
-                <Button label="Download Full Policy" link="#home" />
+                <a
+                  href={policy_download_link}
+                  download
+                  className="inline-block px-6 py-3 bg-primary text-white rounded-md"
+                >
+                  Download Full Policy
+                </a>
               </div>
               <div className="w-full md:h-[500px] col-span-1 animate-fade animate-duration-[600ms] animate-delay-[900ms] md:pt-6">
                 <Image
