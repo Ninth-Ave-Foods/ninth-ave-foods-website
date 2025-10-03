@@ -163,7 +163,7 @@ const PageHeader = ({
       {variant === "minimalOverlay" && (
         <div className="text-center">
           <div
-            className={`relative px-8 py-14 overflow-hidden min-h-[700px] ${
+            className={`relative px-8 py-14 overflow-hidden h-[400px] md:h-[700px] ${
               image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
             }`}
           >
