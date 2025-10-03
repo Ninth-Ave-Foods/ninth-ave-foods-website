@@ -163,7 +163,7 @@ const PageHeader = ({
       {variant === "minimalOverlay" && (
         <div className="text-center">
           <div
-            className={`relative px-8 py-14 overflow-hidden h-[400px] md:h-[800px] ${
+            className={`relative px-8 py-14 overflow-hidden min-h-[700px] ${
               image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
             }`}
           >
@@ -184,7 +184,7 @@ const PageHeader = ({
 
             {/* Content */}
             <div className="relative z-10">
-              <div className="absolute top-24 md:top-64 right-0 flex flex-col items-end text-right">
+              <div className="absolute top-24 md:top-60 right-0 flex flex-col items-end text-right">
                 <h2
                   className={`text-h2 lg:text-h1 md:w-[800px] md:pr-8 pb-4 font-primary ${
                     image ? "text-white" : "text-dark-grey"
