@@ -22,7 +22,7 @@ services:
     alt: "plastic bottles"
     category: "Sustainability"
     title: "HDPE Bottles and PET Bottles"
-    content: "Promote sustainability with HDPE and PET containers, 100% recyclable and easily collected reducing landfill waste."
+    content: "Durable and lightweight plastics accepted by many curbside recycling programs to help reduce landfill waste."
     button:
       enable: true
       label: "More Info"
