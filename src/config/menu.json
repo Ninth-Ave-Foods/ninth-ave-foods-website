@@ -39,6 +39,10 @@
           "url": "/sustainability"
         },
         {
+          "name": "Minimizing Carbon",
+          "url": "/minimizing-carbon"
+        },
+        {
           "name": "Water Stewardship",
           "url": "/water-stewardship"
         },
@@ -57,11 +61,6 @@
         {
           "name": "Corrugated Boxes",
           "url": "/corrugated-boxes"
-        },
-
-        {
-          "name": "Minimizing Carbon",
-          "url": "/minimizing-carbon"
         }
       ]
     },
