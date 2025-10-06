@@ -32,6 +32,8 @@ policy_content3: "and outlines robust implementation, monitoring, and review
   business."
 policy_image: "/images/sustainability/images/sustainability-sustainable.jpg"
 
+policy_download_link: "#"
+
 highlight_banner:
   logo: "/images/sustainability/icons/eco-light.png"
   subtitle: "We’ve also invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."

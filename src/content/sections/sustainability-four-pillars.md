@@ -6,6 +6,15 @@ label: "Reach Us for More Insights"
 
 # Sustainability Pillars
 sustainabilityPillars:
+  - logo: "/images/sustainability/icons/sustainable-development.png"
+    alt: "Sustainable development logo"
+    title: "Sustainability"
+    content: "We are redefining dairy and food production through our unwavering commitment to environmental..."
+    button:
+      enable: true
+      label: "Learn More"
+      link: "/sustainability"
+
   - logo: "/images/sustainability/icons/leaf.png"
     alt: "Leaf logo"
     title: "Minimizing Carbon"
@@ -30,13 +39,4 @@ sustainabilityPillars:
       enable: true
       label: "Learn More"
       link: "/circular-economy"
-
-  - logo: "/images/sustainability/icons/sustainable-development.png"
-    alt: "Sustainable development logo"
-    title: "Sustainability"
-    content: "We are redefining dairy and food production through our unwavering commitment to environmental..."
-    button:
-      enable: true
-      label: "Learn More"
-      link: "/sustainability"
 ---

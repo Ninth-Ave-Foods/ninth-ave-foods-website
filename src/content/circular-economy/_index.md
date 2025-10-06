@@ -18,6 +18,6 @@ highlight_banner:
   detail: "Find detailed data about our commitment to a circular economy below."
   enableDownArrow: true
 
-infographic: "/images/circular-economy/images/composting-packaging-and-waste-diversion-graphic.png"
+infographic: "/images/circular-economy/images/composting-packaging-and-waste-diversion-graphic.jpg"
 infographic_alt: "Closed-loop reuse infographic"
 ---
