@@ -35,6 +35,18 @@
       "hasChildren": true,
       "children": [
         {
+          "name": "Sustainability Efforts",
+          "url": "/sustainability"
+        },
+        {
+          "name": "Water Stewardship",
+          "url": "/water-stewardship"
+        },
+        {
+          "name": "Circular Economy",
+          "url": "/circular-economy"
+        },
+        {
           "name": "Cartons",
           "url": "/cartons"
         },
@@ -46,21 +58,10 @@
           "name": "Corrugated Boxes",
           "url": "/corrugated-boxes"
         },
-        {
-          "name": "Sustainability Efforts",
-          "url": "/sustainability"
-        },
+
         {
           "name": "Minimizing Carbon",
           "url": "/minimizing-carbon"
-        },
-        {
-          "name": "Water Stewardship",
-          "url": "/water-stewardship"
-        },
-        {
-          "name": "Circular Economy",
-          "url": "/circular-economy"
         }
       ]
     },
