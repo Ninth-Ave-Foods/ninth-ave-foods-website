@@ -15,7 +15,7 @@ vision_image: "/images/sustainability/images/sustainability-aerial-view-of-facto
 
 policy_title: "Sustainability Policy"
 policy_content:
-  "Our Environmental Sustainability Policy applies across every facet
+  "Our **Environmental Sustainability Policy** applies across every facet
   of our operation—from our dairies and processing facilities to
   distribution and supplier partnerships—reflecting our commitment
   to responsible __**resource management**__ and __**environmental stewardship**__."
@@ -32,11 +32,11 @@ policy_content3: "and outlines robust implementation, monitoring, and review
   business."
 policy_image: "/images/sustainability/images/sustainability-sustainable.jpg"
 
-policy_download_link: "#"
+policy_download_link: "/downloads/Policy.pdf"
 
 highlight_banner:
   logo: "/images/sustainability/icons/eco-light.png"
-  subtitle: "We’ve also invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."
+  subtitle: "We’ve invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."
   detail: "Find detailed data about our sustainability efforts below."
   enableDownArrow: true
 

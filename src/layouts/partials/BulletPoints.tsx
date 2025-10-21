@@ -41,7 +41,7 @@ const BulletPoints = ({ bulletpoints }: BulletPointsProps) => {
             />
           </svg>
           <span
-            className="text-lg font-light text-dark-grey"
+            className="text-md font-light text-dark-grey tracking-wide font-secondary"
             dangerouslySetInnerHTML={markdownify(bullet)}
           />
         </li>

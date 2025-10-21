@@ -69,7 +69,7 @@ const Home = () => {
           <div className="container relative z-10">
             <div className="relative 2xl:col-5 xl:col-6 md:col-8">
               <div className="absolute inset-0 flex items-center justify-left text-left">
-                <div className="bg-slate-100 bg-opacity-65 border-t border-transparent backdrop-blur-sm shadow-md 2xl:p-14 lg:p-10 md:p-4 p-5 rounded-xl">
+                <div className="bg-slate-100 bg-opacity-75 border-t border-transparent backdrop-blur-sm shadow-md lg:p-10 md:p-4 p-5 rounded-xl">
                   <div className="py-4">
                     <h1
                       className="mb-6 text-h2 lg:text-h1 animate-fade-up animate-duration-[600ms] text-dark-grey"
@@ -77,7 +77,7 @@ const Home = () => {
                     />
 
                     <p
-                      className="text-xl font-light animate-fade-up animate-delay-[400ms] ease-in text-dark-grey"
+                      className="text-xl font-secondary leading-relaxed tracking-wide font-light animate-fade-up animate-delay-[400ms] ease-in text-dark-grey"
                       dangerouslySetInnerHTML={markdownify(
                         banner.content ?? "",
                       )}
@@ -133,7 +133,7 @@ const Home = () => {
 
       {features.map((feature, index: number) => (
         <section key={index} className="section-sm xl:mx-20 mx-8">
-          <div className="row items-center justify-center">
+          <div className="row items-center justify-center text-dark-grey tracking-wide font-secondary">
             <div
               className={`mb:md-0 mb-6 xl:pr-20 lg:col-6 md:col-9 animate-fade animate-duration-[600ms] max-w-[800px] ${
                 index % 2 !== 0 && "md:order-2"
@@ -162,12 +162,12 @@ const Home = () => {
               </div>
 
               <h2
-                className="mb-4 animate-fade-up animate-duration-[600ms] text-dark-grey"
+                className="mb-4 animate-fade-up animate-duration-[600ms] text-dark-grey tracking-wide"
                 dangerouslySetInnerHTML={markdownify(feature.subtitle ?? "")}
               />
 
               <p
-                className="mb-8 text-lg animate-fade-up animate-delay-[400ms] ease-in"
+                className="mb-8 text-dark-grey tracking-wide text-lg font-secondary animate-fade-up animate-delay-[400ms] ease-in"
                 dangerouslySetInnerHTML={markdownify(feature.content)}
               />
               <ul className="animate-fade-up animate-delay-[400ms] ease-in">
@@ -177,13 +177,16 @@ const Home = () => {
                       <FaCheck
                         className={"absolute left-0 top-1.5 text-lime-green"}
                       />
-                      <span dangerouslySetInnerHTML={markdownify(bullet)} />
+                      <span
+                        className=" text-dark-grey tracking-wide font-secondary"
+                        dangerouslySetInnerHTML={markdownify(bullet)}
+                      />
                     </li>
                   ))}
               </ul>
               {feature.button.enable && (
                 <Link
-                  className="btn btn-primary rounded-full mt-5 hover:bg-dark-grey hover:border-dark-grey"
+                  className="btn btn-primary rounded-full mt-5 hover:bg-dark-grey hover:border-dark-grey "
                   href={feature.button.link}
                 >
                   <div className="flex flex-row items-center">
@@ -219,18 +222,20 @@ const Home = () => {
         <PlantBased data={plantBased} />
 
         {/* Container for the title and button */}
-        <div className="flex flex-col text-left mb-12">
+        <div className="flex flex-col text-left mb-6">
           {/* Flex container for text and button */}
           <div className="sm:col-10 mx-auto sm:pl-10 col-9 flex justify-between">
             <div className="flex-col">
-              <p className="text-lg font-primary">{gallery.header}</p>
-              <h3
-                className="font-secondary mb-2 text-h3 lg:text-h2 text-dark-grey sm:tracking-wide"
+              <p className="text-xl leading-relaxed tracking-wide">
+                {gallery.header}
+              </p>
+              <h2
+                className="font-secondary mb-2 text-dark-grey tracking-wide"
                 dangerouslySetInnerHTML={markdownify(gallery.title)}
               />
 
               <p
-                className="text-lg font-primary leading-relaxed text-dark-grey max-w-4xl"
+                className="text-lg font-primary leading-relaxed tracking-wide text-dark-grey max-w-4xl"
                 dangerouslySetInnerHTML={markdownify(gallery.subtitle)}
               />
             </div>

@@ -9,7 +9,7 @@ description: "this is meta description"
 page_header_image: "/images/circular-economy/images/save-the-world.jpg"
 
 vision_title: "Turning waste into opportunity at every stage"
-vision_content: "From manure composting at the dairies to optimizing packaging design for manufacturing, we strive to minimize waste and close the loop wherever possible."
+vision_content: "From manure composting at our dairies to optimizing packaging design for manufacturing, we strive to minimize waste and close the loop wherever possible."
 vision_content2: "We work with suppliers on responsible material sourcing and invest in techniques that promote recycling, reuse, and safe waste disposal."
 vision_image: "/images/circular-economy/images/non-assembled-cardboard-parcel-boxes.jpg"
 

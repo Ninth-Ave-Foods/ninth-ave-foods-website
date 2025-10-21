@@ -49,11 +49,15 @@
         {
           "name": "Circular Economy",
           "url": "/circular-economy"
-        },
-        {
-          "name": "Cartons",
-          "url": "/cartons"
-        },
+        }
+      ]
+    },
+
+    {
+      "name": "Sustainable Packaging",
+      "url": "",
+      "hasChildren": true,
+      "children": [
         {
           "name": "HDPE Bottles and PET Bottles",
           "url": "/hdpe-bottles-pet-bottles"

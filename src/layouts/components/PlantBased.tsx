@@ -22,7 +22,7 @@ const PlantBased = ({ data }: { data: PageData }) => {
     <>
       {data.frontmatter.enable && (
         <section className="remb-28 mb-28 bg-pastel-green">
-          <div className="lg:grid grid-cols-[2.5fr,2fr] h-[520px]">
+          <div className="lg:grid grid-cols-[2.5fr,2fr] h-[520px] text-dark-grey tracking-wide">
             <div className="relative lg:h-full h-1/2">
               <Image
                 src={data.frontmatter.image}
@@ -47,7 +47,7 @@ const PlantBased = ({ data }: { data: PageData }) => {
                       dangerouslySetInnerHTML={markdownify(
                         data.frontmatter.title,
                       )}
-                      className="text-dark-grey text-h4 lg:text-h2 mb-6"
+                      className="text-dark-grey text-h4 lg:text-h2 md:mb-6 mb-4 tracking-wide font-secondary"
                     />
                   </div>
 
@@ -62,7 +62,7 @@ const PlantBased = ({ data }: { data: PageData }) => {
                       dangerouslySetInnerHTML={markdownify(
                         data.frontmatter.description,
                       )}
-                      className="text-dark-grey mb-6 md:text-lg"
+                      className="text-dark-grey mb-6 md:text-lg leading-relaxed tracking-wide "
                     />
                   </div>
 

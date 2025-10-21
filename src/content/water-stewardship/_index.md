@@ -8,8 +8,8 @@ description: "this is meta description"
 
 page_header_image: "/images/water-stewardship/images/water-drops.jpg"
 
-vision_title: "Preserving water through reuse and risk reduction"
-vision_content: "Recognizing water as a shared and precious resource, we emphasizes multi-use and recycling systems for both dairies and processing facilities."
+vision_title: "Water conservation through reuse and risk reduction"
+vision_content: "Recognizing water as a shared and precious resource, we emphasize multi-use and recycling systems for both dairies and processing facilities."
 vision_content2: "Through advanced irrigation methods, wastewater treatment, and diligent monitoring, we safeguard local water supplies, reduce consumption, and mitigate risks of scarcity or pollution."
 vision_image: "/images/water-stewardship/images/life-in-liquid-form.png"
 
@@ -28,8 +28,8 @@ highlights_section:
     title: "Efficiency Innovations"
     content: "**Smart technology reducing water use and increasing system efficiency.**\n\n"
     bulletpoints:
-      - "One dairy employs __**LEPA sprinklers**__ and __**VFD-driven pumps**__ to minimize withdrawals\n"
-      - "Manufacturing __**CIP systems**__ and __**advanced pasteurizers**__ reduce municipal water demand"
+      - "One dairy employs __**Low Energy Precision Application (LEPA)**__ sprinklers and __**Variable Frequency-Driven (VFD)**__ pumps to minimize withdrawals\n"
+      - "Manufacturing __**Clean-in-Place (CIP)__** systems and __**advanced pasteurizers**__ reduce municipal water demand"
   - image: "/images/water-stewardship/images/pipes-and-tap-water.jpg"
     alt: "Solar panels lined up"
     title: "Risk Management"
