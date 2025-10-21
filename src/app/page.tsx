@@ -222,56 +222,56 @@ const Home = () => {
         <PlantBased data={plantBased} />
 
         {/* Container for the title and button */}
-        <div className="flex flex-col text-left mb-6">
-          {/* Flex container for text and button */}
-          <div className="sm:col-10 mx-auto sm:pl-10 col-9 flex justify-between">
-            <div className="flex-col">
-              <p className="text-xl leading-relaxed tracking-wide">
-                {gallery.header}
-              </p>
-              <h2
-                className="font-secondary mb-2 text-dark-grey tracking-wide"
-                dangerouslySetInnerHTML={markdownify(gallery.title)}
-              />
 
-              <p
-                className="text-lg font-primary leading-relaxed tracking-wide text-dark-grey max-w-4xl"
-                dangerouslySetInnerHTML={markdownify(gallery.subtitle)}
-              />
-            </div>
+        {/* === Gallery Text Section === */}
+        <section className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between text-center sm:text-start items-start md:items-center mb-12">
+          <div className="md:max-w-3xl">
+            <p className="text-xl leading-relaxed tracking-wide text-primary">
+              {gallery.header}
+            </p>
 
-            {/* Button aligned to the end */}
-            <div className="mr-10 flex-row items-center text-end md:block hidden text-primary hover:text-white my-auto justify-between">
-              {/* Add ml-auto to push the button to the end */}
-              <Link
-                className="items-center text-sm text-center flex flex-row btn border-primary rounded-full hover:bg-dark-grey hover:border-dark-grey"
-                href={gallery.button.link}
-                rel="noopener"
-              >
-                {gallery.button.label}
-                <svg
-                  className="hover:text-white ml-1"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m9 5 7 7-7 7"
-                  />
-                </svg>
-              </Link>
-            </div>
+            <h2
+              className="font-secondary mb-3 text-dark-grey tracking-wide text-3xl md:text-4xl"
+              dangerouslySetInnerHTML={markdownify(gallery.title)}
+            />
+
+            <p
+              className="text-lg font-primary leading-relaxed tracking-wide text-dark-grey"
+              dangerouslySetInnerHTML={markdownify(gallery.subtitle)}
+            />
           </div>
-        </div>
+
+          {/* === Button === */}
+          <div className="hidden md:block px-4">
+            <Link
+              href={gallery.button.link}
+              rel="noopener"
+              className="flex items-center text-sm text-center text-primary border border-primary rounded-full px-5 py-2 hover:bg-dark-grey hover:border-dark-grey hover:text-white transition-all duration-200"
+            >
+              {gallery.button.label}
+              <svg
+                className="ml-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m9 5 7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </section>
 
         <PhotoGallery photos={photos} />
+
         <CallToAction data={callToAction} />
       </div>
     </>
