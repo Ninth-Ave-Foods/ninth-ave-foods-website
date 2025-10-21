@@ -39,7 +39,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
         <div className="pb-28 px-4 bg-white flex justify-center items-center text-center">
           <div
             ref={ref}
-            className={`col-12 xl:col-10 ${inView ? "animate-fade" : ""}`}
+            className={`max-w-6xl mx-auto w-full ${inView ? "animate-fade" : ""}`}
           >
             <PhotoAlbum
               photos={photos}

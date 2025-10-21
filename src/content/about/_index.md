@@ -34,7 +34,7 @@ highlights_section:
     title: "Ninth Avenue Foods Industry, CA"
     content: "Based in **__City of Industry, California__**, Ninth Avenue Foods is a fourth-generation, family-owned dairy company with over **__50 years of experience__**. We blend advanced technology with traditional values to deliver **high-quality**, **innovative** beverage products."
     bulletpoints:
-      - "**__State-of-the-art ESL facility__** – Built for **high-quality** dairy and beverage manufacturing"
+      - "**__State-of-the-art ESL facility__** – Built for **premium** dairy and beverage production"
       - "**__Family-owned for four generations__** – Rooted in tradition, driven by **innovation**"
       - "**__From concept to launch__** – Full-service **production support** under one roof"
       - "**__Innovation-driven__** – Advanced processes for both **traditional** and **plant-based beverages**"

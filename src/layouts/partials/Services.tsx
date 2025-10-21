@@ -136,7 +136,7 @@ const Services = ({ data }: { data: PageData }) => {
               <div className="flex flex-col text-center md:text-left font-secondary">
                 <h2
                   dangerouslySetInnerHTML={markdownify(data.frontmatter.title)}
-                  className="text-dark-grey text-h3 leading-loose"
+                  className="text-dark-grey text-h3 leading-relaxed"
                 />
                 {data.frontmatter.description && (
                   <p
