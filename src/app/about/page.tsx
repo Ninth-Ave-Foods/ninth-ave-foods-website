@@ -74,7 +74,7 @@ const About = () => {
       />
       <PageHeader title={title} image={image} />
       <section className="section-sm">
-        <div className="container">
+        <div className="container text-dark-grey tracking-wide font-secondary">
           <div className="row justify-center mx-1">
             <div className="lg:col-12">
               {/* How We Got Started */}
@@ -95,23 +95,23 @@ const About = () => {
                   <div className="lg:col-6 items-center mx-auto lg:pl-16">
                     <h2
                       dangerouslySetInnerHTML={markdownify(feature.title)}
-                      className="mb-6 text-h3 lg:text-h2 text-dark-grey animate-fade animate-duration-[600ms] ease-in"
+                      className="text-dark-grey leading-loose animate-fade animate-duration-[600ms] ease-in"
                     />
-                    <div className="content">
-                      <p
-                        dangerouslySetInnerHTML={markdownify(feature.content)}
-                        className="text-lg text-dark-grey animate-fade animate-delay-[200ms] ease-in"
-                      />
-                    </div>
+
+                    <p
+                      dangerouslySetInnerHTML={markdownify(feature.content)}
+                      className="text-lg leading-relaxed tracking-wide text-dark-grey animate-fade animate-delay-[200ms] pb-8 ease-in"
+                    />
+
                     {feature.button.enable && (
                       <Link
-                        className="btn btn-primary rounded-full mt-5 hover:bg-dark-grey hover:border-dark-grey"
+                        className="btn btn-primary rounded-full hover:bg-dark-grey hover:border-dark-grey"
                         href={feature.button.link}
                       >
                         <div className="flex flex-row items-center">
                           {feature.button.label}
                           <svg
-                            className="text-primaryhover:text-white ml-1"
+                            className="hover:text-white ml-1"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="18"
@@ -149,13 +149,13 @@ const About = () => {
         <div className="bg-pastel-green w-full flex items-center justify-center">
           <div className="flex flex-col lg:flex-row w-full">
             {/* Left Side - Text Content */}
-            <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center my-8">
+            <div className="lg:w-1/2 w-full flex flex-col justify-center text-center items-center my-8  mx-8">
               <h3
                 dangerouslySetInnerHTML={markdownify(contact_title)}
                 className="mb-1 text-dark-grey animate-fade animate-duration-[600ms] ease-in"
               />
               <p
-                className="text-dark-grey text-lg animate-fade animate-delay-[200ms] ease-in"
+                className="text-dark-grey leading-relaxed tracking-wide text-lg animate-fade animate-delay-[200ms] ease-in"
                 dangerouslySetInnerHTML={markdownify(contact_content)}
               />
 

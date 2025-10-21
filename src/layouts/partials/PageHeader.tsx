@@ -96,7 +96,7 @@ const PageHeader = ({
       {variant === "overlayTextBox" && (
         <div className=" text-center">
           <div
-            className={`relative px-8 py-14 overflow-hidden ${
+            className={`relative px-8 py-14 overflow-hidden min-h-[600px] ${
               image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
             }`}
           >
@@ -114,8 +114,8 @@ const PageHeader = ({
                   blurDataURL="/images/image-placeholder.png"
                   className="object-cover w-full h-auto object-bottom brightness-10"
                   priority // Preload the image
-                  quality={80} // Adjust image quality for performance
-                  sizes="(min-width: 1400px) 1286px, 93.8vw"
+                  quality={90} // Adjust image quality for performance
+                  sizes="(min-width: 2000px) 1500px, 93.8vw"
                 />
                 <div
                   className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/10"
@@ -126,8 +126,8 @@ const PageHeader = ({
             <div className="relative">
               <div className="absolute left-[510px] top-28 hidden md:block">
                 <Image
-                  src="/images/sustainability/planet-earth.png"
-                  alt="Ninth Ave Foods Warehouse"
+                  src="/images/sustainability/icons/planet-earth.png"
+                  alt="Plant earth icon"
                   className="w-[150px] h-[150px]"
                   width={300}
                   height={300}
@@ -155,6 +155,55 @@ const PageHeader = ({
                 }`}
                 spanClassName={`${image ? "text-white" : "text-primary"}`}
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {variant === "minimalOverlay" && (
+        <div className="text-center">
+          <div
+            className={`relative px-8 py-14 overflow-hidden h-[400px] md:h-[700px] ${
+              image ? "" : "bg-gradient-to-b from-light-green to-theme-light"
+            }`}
+          >
+            {/* Parallax Image */}
+            {image && (
+              <div className="absolute inset-0 w-full h-full z-0">
+                <Image
+                  src={image}
+                  alt="Image header"
+                  fill
+                  priority
+                  style={{ ...parallaxStyle, objectFit: "cover" }}
+                  className="object-bottom brightness-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/20" />
+              </div>
+            )}
+
+            {/* Content */}
+            <div className="relative z-10">
+              <div className="absolute top-24 md:top-60 right-0 flex flex-col items-end text-right">
+                <h2
+                  className={`text-h2 lg:text-h1 md:w-[800px] md:pr-8 pb-4 font-primary ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  dangerouslySetInnerHTML={markdownify(title ?? "")}
+                />
+                <p
+                  className={`sm:text-xl bg-primary rounded-xs py-2 md:px-9 px-4 text-right md:max-w-[960px] font-bold ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  dangerouslySetInnerHTML={markdownify(subtitle ?? "")}
+                />
+                <Breadcrumbs
+                  className={`relative mt-6 text-lg ${
+                    image ? "text-white" : "text-dark-grey"
+                  }`}
+                  spanClassName={image ? "text-white" : "text-primary"}
+                />
+              </div>
             </div>
           </div>
         </div>

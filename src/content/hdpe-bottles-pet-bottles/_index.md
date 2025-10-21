@@ -8,10 +8,10 @@ image2: "/images/istock-plastic-processing.jpg"
 alt2: "plant processing difficulties diagram"
 
 sustainability_title: "HDPE and PET Sustainability"
-sustainability_content: "__**HDPE and PET containers**__ are designed to be __**100% recyclable**__, making them a top choice for sustainable packaging. \n\nWith many customers benefiting from the convenience of curbside recycling pickup, both __**HDPE and PET containers**__ are **easily recycled**, significantly **reducing landfill waste**. Embracing curbside recycling for these materials not only supports a __**greener planet**__ but also promotes **efficient waste management practices**."
+sustainability_content: "__**HDPE and PET bottles**__ offer a range of sustainability benefits, making them a top choice for sustainable packaging. \n\n__**HDPE and PET bottles**__ are widely accepted in local recycling programs, helping to **reduce waste** sent to landfills. These lightweight and durable materials support energy efficiency and **lower greenhouse gas (GHG) emissions** during manufacturing and transportation—making them a smart choice for environmentally conscious packaging."
 
 sustainability_title_2: "Energy Efficient - Lower GHG emissions"
-sustainability_content_2: "PET and HDPE containers are mechanically recycled into recycled content or PCR pellets, promoting sustainable manufacturing"
+sustainability_content_2: "PET and HDPE packaging are mechanically recycled into recycled content or PCR pellets, promoting sustainable manufacturing"
 
 sustainability_title_3: "PET Packaging"
 sustainability_quote_3:
@@ -45,11 +45,11 @@ cards:
     title: "Efficient"
     subtitle: "Reduced Carbon Footprint"
   - image: "/images/card-carousel/recycle-materials.jpg"
-    text: "HDPE and PET containers can be produced with 100% recycled content or PCR"
+    text: "Convenient curbside recycling keeps reusable materials out of landfills and supports a cleaner, more sustainable future"
     title: "Recycled"
-    subtitle: "100% Recycled Materials"
+    subtitle: "Recyclable HDPE & PET Bottles"
   - image: "/images/card-carousel/transportation.jpg"
-    text: "HDPE and PET containers are lightweight which helps to lowers fuel usage for product transportation"
+    text: "HDPE and PET bottles are lightweight which helps to lowers fuel usage for product transportation"
     title: "Lightweight"
     subtitle: "Fuel-Efficient Transportation"
 ---

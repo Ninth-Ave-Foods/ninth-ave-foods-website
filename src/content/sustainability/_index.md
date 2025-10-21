@@ -11,10 +11,11 @@ page_header_image: "/images/sustainability/images/sustainability-green-hills.jpg
 vision_title: "Our Sustainability Vision"
 vision_content: "We envision a holistic dairy and food manufacturing ecosystem that thrives in harmony with nature—one where every product reflects our respect for the land, the well-being of our herds, and the communities we serve."
 vision_content2: "Across our dairies, processing facilities, and extended supply chain, we commit to innovating in resource conservation, renewable energy, and regenerative practices.\n\nBy partnering closely with suppliers who share our values, we deliver wholesome, natural products while safeguarding our shared environment for generations to come."
+vision_image: "/images/sustainability/images/sustainability-aerial-view-of-factory.jpg"
 
 policy_title: "Sustainability Policy"
 policy_content:
-  "Our Environmental Sustainability Policy applies across every facet
+  "Our **Environmental Sustainability Policy** applies across every facet
   of our operation—from our dairies and processing facilities to
   distribution and supplier partnerships—reflecting our commitment
   to responsible __**resource management**__ and __**environmental stewardship**__."
@@ -29,11 +30,15 @@ policy_bulletpoints:
 policy_content3: "and outlines robust implementation, monitoring, and review
   processes to ensure accountability at every level of our
   business."
+policy_image: "/images/sustainability/images/sustainability-sustainable.jpg"
+
+policy_download_link: "/downloads/Policy.pdf"
 
 highlight_banner:
   logo: "/images/sustainability/icons/eco-light.png"
-  subtitle: "We’ve also invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."
+  subtitle: "We’ve invested in renewable electricity, clean fuels, and multi-stage water reuse systems, helping us reduce emissions and conserve vital natural resources across all our facilities."
   detail: "Find detailed data about our sustainability efforts below."
+  enableDownArrow: true
 
 infographic: "/images/sustainability/images/2024-performance-at-a-glance.png"
 

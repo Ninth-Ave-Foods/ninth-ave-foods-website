@@ -10,7 +10,7 @@ services:
   - image: "/images/gallery/ninth-ave-10.jpg"
     link: "/cutting-edge-technology"
     alt: "industrial food processing plant"
-    category: "Service"
+    category: "Capability"
     title: "Cutting Edge Technology"
     content: "Our advanced processing plant is engineered to meet and surpass the needs of a rapidly expanding industry."
     button:
@@ -20,7 +20,7 @@ services:
   - image: "/images/istock-lab-workers.jpg"
     link: "/commitment-to-quality"
     alt: "female lab workers"
-    category: "Service"
+    category: "Capability"
     title: "Commitment to Quality"
     content: "Food safety and quality are fundamental at Ninth Avenue Foods, guiding every aspect of our operations."
     button:
@@ -30,7 +30,7 @@ services:
   - image: "/images/gallery/gallery-2.jpg"
     link: "/private-label-co-packing"
     alt: "refrigerated dairy display case"
-    category: "Service"
+    category: "Capability"
     title: "Private Label and Co-Packing"
     content: "At Ninth Avenue Foods, our expertise and capabilities foster winning partnerships to elevate your products."
     button:
@@ -41,7 +41,7 @@ services:
   - image: "/images/istock-bottles.jpg"
     link: "/hdpe-bottles-pet-bottles"
     alt: "dairy bottles on conveyor line"
-    category: "Service"
+    category: "Packaging"
     title: "__New__ Aseptic PET Packaging Launching January 2026"
     content: "Discover Our Advanced __**Aseptic PET Packaging**__ at Our Indiana Facility for Superior Beverage Quality and Safety."
     button:

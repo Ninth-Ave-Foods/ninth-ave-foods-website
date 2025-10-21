@@ -133,10 +133,10 @@ const Services = ({ data }: { data: PageData }) => {
         <section className="section bg-light-green bg-opacity-5 w-full">
           <div className="xl:px-0 px-4 max-w-screen-xl mx-auto">
             <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
-              <div className="flex flex-col text-center md:text-left">
+              <div className="flex flex-col text-center md:text-left font-secondary">
                 <h2
                   dangerouslySetInnerHTML={markdownify(data.frontmatter.title)}
-                  className="text-dark-grey md:text-3xl text-h3 pb-4 font-secondary"
+                  className="text-dark-grey text-h3 leading-loose"
                 />
                 {data.frontmatter.description && (
                   <p

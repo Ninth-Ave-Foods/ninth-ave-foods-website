@@ -52,7 +52,7 @@ const Contact = () => {
       />
       <PageHeader title={title} image={page_header_image} />
       <section className="section-sm">
-        <div className="container">
+        <div className="container tracking-wide font-secondary">
           <div className="flex flex-col justify-center items-center text-center pb-8">
             <div className="flex flex-row  items-center justify-center">
               <svg
@@ -73,7 +73,7 @@ const Contact = () => {
             </div>
 
             <p
-              className="text-lg max-w-[650px]"
+              className="text-lg max-w-[650px] leading-relaxed tracking-wide"
               dangerouslySetInnerHTML={markdownify(career_content)}
             />
           </div>

@@ -5,7 +5,6 @@ import PageHeader from "@/partials/PageHeader";
 import Sidebar from "@/partials/SideBar";
 import SeoMeta from "@/partials/SeoMeta";
 import CallToAction from "@/partials/CallToAction";
-import Image from "next/image";
 import ExpandableImage from "@/components/ExpandableImage";
 
 const { commitment_to_quality_folder } = config.settings;

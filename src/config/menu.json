@@ -35,9 +35,29 @@
       "hasChildren": true,
       "children": [
         {
-          "name": "Cartons",
-          "url": "/cartons"
+          "name": "Sustainability Efforts",
+          "url": "/sustainability"
         },
+        {
+          "name": "Minimizing Carbon",
+          "url": "/minimizing-carbon"
+        },
+        {
+          "name": "Water Stewardship",
+          "url": "/water-stewardship"
+        },
+        {
+          "name": "Circular Economy",
+          "url": "/circular-economy"
+        }
+      ]
+    },
+
+    {
+      "name": "Sustainable Packaging",
+      "url": "",
+      "hasChildren": true,
+      "children": [
         {
           "name": "HDPE Bottles and PET Bottles",
           "url": "/hdpe-bottles-pet-bottles"

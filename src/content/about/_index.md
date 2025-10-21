@@ -9,7 +9,7 @@ description: "this is meta description"
 
 draft: false
 contact_title: "Our Locations on the Map"
-contact_content: "We are proud to showcase our **__state-of-the-art__** manufacturing facilities\n**Here’s where you can find us:**"
+contact_content: "We are proud to showcase our **__state-of-the-art__** manufacturing facilities\n\n**Here’s where you can find us:**"
 
 features:
   - title: "How It All Started"
@@ -49,7 +49,6 @@ highlights_section:
       - "**__Strategic midwest location__** – Ideal for **logistics** and **regional** distribution"
       - "**__101 new jobs by end of 2024__** – **Strengthening** the local workforce and economy"
       - "**__Public-private collaboration__** – Backed by the **Greater Columbus EDC** and **local partners**"
-      - "**__STEM & manufacturing hub__** – Aligned with Columbus' strength in **engineering** and **education**"
       - "**__Community-focused expansion__** – Rooted in a welcoming, **family-friendly** environment"
 
 # Point of Contact Locations
