@@ -8,7 +8,7 @@ label: "Reach Us for More Insights"
 # Services
 services:
   - image: "/images/rockview-cartons-2.jpg"
-    link: "/cartons"
+    link: ""
     alt: "cartons"
     category: "Packaging"
     title: "Cartons"
