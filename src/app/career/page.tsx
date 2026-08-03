@@ -7,25 +7,18 @@ import JobPositionCard from "@/components/JobPositionCard";
 import { JobPosition } from "@/types";
 import { getCareerPageContent } from "../sanity/sanity.query";
 import { getJobPositions } from "../sanity/sanity.query";
+import HiringAnnouncement from "@/partials/HiringAnnouncement";
+import { getListPage } from "@/lib/contentParser";
+import { HiringAnnouncementFrontmatter } from "@/types";
+
+interface Frontmatter {}
 
 const Career = async () => {
   const data = await getCareerPageContent();
+  const texasCTA = getListPage("sections/texas-call-to-action.md");
+  const callToAction = getListPage("sections/call-to-action.md");
 
   const jobPositions: JobPosition[] = await getJobPositions();
-  const callToAction = {
-    frontmatter: {
-      enable: true,
-      title: "Connect to learn more about partnership opportunities",
-      image: "/images/call-to-action.png",
-      description:
-        "To inquire about our current packaging capabilities for fluid packaging, yogurt packaging, sour cream packaging, and ice-cream and dairy-alternative packaging, connect with us.",
-      button: {
-        enable: true,
-        label: "Contact Us",
-        link: "/contact",
-      },
-    },
-  };
 
   return (
     <>
@@ -37,6 +30,8 @@ const Career = async () => {
       <PageHeader title={data.headerTitle} subtitle={data.headerSubtitle} />
 
       <section className="section-sm">
+        <HiringAnnouncement data={texasCTA} />
+
         <div className="container pb-14">
           <div className="w-full">
             <div className="lg:col-11">

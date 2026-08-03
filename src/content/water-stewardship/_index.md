@@ -1,6 +1,6 @@
 ---
 title: "Water Stewardship"
-subtitle: "Preserving water through innovation and responsible farming"
+subtitle: "Water conservation through reuse and risk reduction "
 meta_title: ""
 categories: []
 tags: []
@@ -8,7 +8,7 @@ description: "this is meta description"
 
 page_header_image: "/images/water-stewardship/images/water-drops.jpg"
 
-vision_title: "Water conservation through reuse and risk reduction"
+vision_title: "Preserving water through innovation and responsible farming"
 vision_content: "Recognizing water as a shared and precious resource, we emphasize multi-use and recycling systems for both dairies and processing facilities."
 vision_content2: "Through advanced irrigation methods, wastewater treatment, and diligent monitoring, we safeguard local water supplies, reduce consumption, and mitigate risks of scarcity or pollution."
 vision_image: "/images/water-stewardship/images/life-in-liquid-form.png"
