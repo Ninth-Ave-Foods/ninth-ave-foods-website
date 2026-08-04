@@ -16,7 +16,7 @@
     "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "24.x"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",
@@ -39,7 +39,7 @@
     "marked": "^11.2.0",
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "^6.0.0",
     "next-sanity": "^9.3.10",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
@@ -54,7 +54,7 @@
     "react-lite-youtube-embed": "^2.4.0",
     "react-photo-album": "^3.0.2",
     "rehype-slug": "^6.0.0",
-    "remark-gfm": "^3.0.1",
+    "remark-gfm": "^4.0.0",
     "sanity": "^3.45.0",
     "sharp": "^0.33.5",
     "styled-components": "^6.1.11",

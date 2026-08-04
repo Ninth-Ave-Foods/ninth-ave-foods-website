@@ -7,11 +7,15 @@ import JobPositionCard from "@/components/JobPositionCard";
 import { JobPosition } from "@/types";
 import { getCareerPageContent } from "../sanity/sanity.query";
 import { getJobPositions } from "../sanity/sanity.query";
+import HiringAnnouncement from "@/partials/HiringAnnouncement";
+// import { getListPage } from "@/lib/contentParser";
 
 const Career = async () => {
   const data = await getCareerPageContent();
-
   const jobPositions: JobPosition[] = await getJobPositions();
+
+  //const texasCTA = getListPage("sections/texas-call-to-action.md");
+  // const callToAction = getListPage("sections/call-to-action.md");
   const callToAction = {
     frontmatter: {
       enable: true,
@@ -27,6 +31,16 @@ const Career = async () => {
     },
   };
 
+  const texasCTA = {
+    frontmatter: {
+      enable: true,
+      title: "Texas Opportunities Coming Soon",
+      dateLabel: "Spring 2027",
+      description:
+        "We're currently hiring in other locations.\nTexas positions are expected to open in **__Spring 2027__**—we look forward to sharing new opportunities with you.",
+    },
+  };
+
   return (
     <>
       <SeoMeta
@@ -37,6 +51,8 @@ const Career = async () => {
       <PageHeader title={data.headerTitle} subtitle={data.headerSubtitle} />
 
       <section className="section-sm">
+        <HiringAnnouncement data={texasCTA} />
+
         <div className="container pb-14">
           <div className="w-full">
             <div className="lg:col-11">

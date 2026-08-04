@@ -376,3 +376,10 @@ export type CardCarouselType = {
   title: string;
   subtitle: string;
 };
+
+export type HiringAnnouncementFrontmatter = {
+  enable?: boolean;
+  title: string;
+  dateLabel?: string;
+  description: string;
+};
