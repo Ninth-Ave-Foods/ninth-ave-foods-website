@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { FormEvent, useState } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SuccessMessage from "@/partials/SubmissionMessage";
@@ -22,7 +23,10 @@ const ContactUsForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit the data. Please try again.");
+        const data = await response.json();
+        throw new Error(
+          data.message || "Unable to submit the form. Please try again.",
+        );
       } else {
         setFormSubmitted(true); // Show the overlay after success
       }
@@ -36,6 +40,11 @@ const ContactUsForm = () => {
 
   return (
     <div className="animate-fade ease-in mx-auto md:col-6 mb-20 md:mb-0">
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        strategy="afterInteractive"
+      />
+
       {isFormSubmitted && (
         <SuccessMessage
           title="Thank you for submitting"
@@ -54,6 +63,7 @@ const ContactUsForm = () => {
           </h5>
           <div className="flex-grow border opacity-40 border-t border-light-green invisible lg:visible"></div>
         </div>
+
         <form method="POST" onSubmit={onSubmit}>
           <div className="flex flex-wrap md:-mx-6 mx-8">
             <div className="w-full md:w-1/2 px-1 md:mb-6 mb-3">
@@ -122,6 +132,11 @@ const ContactUsForm = () => {
             </div>
 
             <div className="px-1">
+              <div
+                className="cf-turnstile"
+                data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                data-action="contact"
+              />
               <button
                 type="submit"
                 className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full"
