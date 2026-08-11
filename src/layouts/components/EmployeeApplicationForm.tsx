@@ -2682,7 +2682,9 @@ const EmployeeApplicationForm = ({
                   setError(null);
                 }}
                 onExpire={() => setTurnstileToken(null)}
-                onError={() => {
+                onError={(errorCode) => {
+                  console.error("Turnstile error:", errorCode);
+
                   setTurnstileToken(null);
                   setError(
                     "Verification failed. Please refresh the page and try again.",
