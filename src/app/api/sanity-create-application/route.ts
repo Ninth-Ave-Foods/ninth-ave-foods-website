@@ -10,6 +10,89 @@ export async function POST(request: Request) {
   const formData = await request.formData();
 
   try {
+    // -----------------------------
+    // Turnstile validation
+    // -----------------------------
+    const token = formData.get("cf-turnstile-response");
+    const expectedAction = "job-application";
+    const expectedHostnames = new Set(
+      (process.env.TURNSTILE_HOSTNAMES ?? "")
+        .split(",")
+        .map((hostname) => hostname.trim())
+        .filter(Boolean),
+    );
+
+    if (
+      typeof token !== "string" ||
+      token.length === 0 ||
+      token.length > 2048 ||
+      expectedHostnames.size === 0
+    ) {
+      console.error("Turnstile validation failed before Siteverify:", {
+        hasToken: typeof token === "string" && token.length > 0,
+        tokenTooLong: typeof token === "string" && token.length > 2048,
+        hasExpectedHostnames: expectedHostnames.size > 0,
+      });
+      return NextResponse.json(
+        {
+          message:
+            "We couldn't verify your submission. Please refresh the page and try again.",
+        },
+        { status: 403 },
+      );
+    }
+
+    let result;
+
+    try {
+      const r = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          signal: AbortSignal.timeout(10_000),
+          body: new URLSearchParams({
+            secret: process.env.TURNSTILE_SECRET!,
+            response: token,
+          }),
+        },
+      );
+      if (!r.ok) throw new Error(`siteverify ${r.status}`);
+      result = await r.json();
+    } catch (error) {
+      console.error("Turnstile Siteverify request failed:", {
+        message: error instanceof Error ? error.message : "Unknown error",
+      });
+      return NextResponse.json(
+        {
+          message:
+            "We couldn't verify your submission. Please refresh the page and try again.",
+        },
+        { status: 403 },
+      );
+    }
+    if (
+      !result.success ||
+      result.action !== expectedAction ||
+      !expectedHostnames.has(result.hostname)
+    ) {
+      console.error("Turnstile verification rejected:", {
+        success: result.success,
+        action: result.action,
+        expectedAction,
+        hostname: result.hostname,
+        hostnameAllowed: expectedHostnames.has(result.hostname),
+        errors: result["error-codes"],
+      });
+      return NextResponse.json(
+        {
+          message:
+            "We couldn't verify your submission. Please refresh the page and try again.",
+        },
+        { status: 403 },
+      );
+    }
+
     // Parse employment experiences if provided
     const employmentExperiencesString = formData.get("employmentExperiences");
     let employmentExperiences = [];

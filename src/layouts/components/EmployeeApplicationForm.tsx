@@ -4,7 +4,7 @@ import { FormEvent, useState, useEffect } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SubmissionMessage from "@/partials/SubmissionMessage";
 import { Dict } from "styled-components/dist/types";
-import { generatePdfBuffer } from "@/lib/utils/generatePdfBuffer";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 // Dynamic employment experience
 type EmploymentExperience = {
@@ -37,7 +37,7 @@ const EmployeeApplicationForm = ({
     useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   // const [success, setSucess] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Dict>({});
   const [employmentExpFormErrors, setEmploymentExpFormErrors] = useState<Dict>(
@@ -92,6 +92,7 @@ const EmployeeApplicationForm = ({
   const [isRequired, setIsRequired] = useState<boolean>(false);
   const [isRequired2, setIsRequired2] = useState<boolean>(false);
 
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   useEffect(() => {
     // Handles case where there is orginally one employment card on page mount
     if (employmentExperiences.length === 1) {
@@ -304,6 +305,12 @@ const EmployeeApplicationForm = ({
       // Create FormData from the event target
       const formData = new FormData(event.currentTarget);
 
+      if (!turnstileToken) {
+        throw new Error("Please wait for verification to complete.");
+      }
+
+      formData.set("cf-turnstile-response", turnstileToken);
+
       // Prepare the employment experiences array
       const experiences = employmentExperiences.map((experience, index) => {
         // Add the employerContact values based on the index
@@ -358,18 +365,6 @@ const EmployeeApplicationForm = ({
         const applicationData = data.application;
 
         try {
-          // Generate the PDF as a Node Buffer
-          const pdfBuffer = await generatePdfBuffer(
-            applicationData, // pass the form/application data
-            { jobTitle: jobTitle, jobLocation: jobLocation },
-          );
-
-          // Convert the PDF buffer to Base64 for sending via API
-          const base64Pdf = pdfBuffer.toString("base64");
-          // Create a safe filename
-          const jobTitleSafe = (jobTitle || "Application").replace(/\s+/g, "-");
-          const filename = `${applicationData.fname}-${applicationData.lname}-${jobTitleSafe}.pdf`;
-
           // Send the email
           const emailResponse = await fetch("/api/send-employee-application", {
             method: "POST",
@@ -377,8 +372,9 @@ const EmployeeApplicationForm = ({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              filename,
-              file: base64Pdf,
+              applicationData,
+              jobTitle,
+              jobLocation,
             }),
           });
 
@@ -2671,10 +2667,29 @@ const EmployeeApplicationForm = ({
 
             {/* Submit form button */}
             <div className="pt-10">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                options={{
+                  action: "job-application",
+                  appearance: "always",
+                  theme: "light",
+                }}
+                onSuccess={(token) => {
+                  setTurnstileToken(token);
+                  setError(null);
+                }}
+                onExpire={() => setTurnstileToken(null)}
+                onError={() => {
+                  setTurnstileToken(null);
+                  setError(
+                    "Verification failed. Please refresh the page and try again.",
+                  );
+                }}
+              />
               <button
                 type="submit"
-                className="bg-primary hover:bg-dark-grey text-white font-semibold py-2 px-6 border border-primary hover:border-transparent rounded"
-                disabled={isLoading}
+                className="bg-primary hover:bg-dark-grey text-white font-semibold py-2 px-6 border border-primary hover:border-transparent rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading || !turnstileToken}
               >
                 <svg
                   aria-hidden="true"

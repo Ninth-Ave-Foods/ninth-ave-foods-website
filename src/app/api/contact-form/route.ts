@@ -29,6 +29,11 @@ export async function POST(req: NextRequest) {
     token.length > 2048 ||
     expectedHostnames.size === 0
   ) {
+    console.error("Turnstile validation failed before Siteverify:", {
+      hasToken: typeof token === "string" && token.length > 0,
+      tokenTooLong: typeof token === "string" && token.length > 2048,
+      hasExpectedHostnames: expectedHostnames.size > 0,
+    });
     return NextResponse.json(
       {
         message:
@@ -55,7 +60,10 @@ export async function POST(req: NextRequest) {
     );
     if (!r.ok) throw new Error(`siteverify ${r.status}`);
     result = await r.json();
-  } catch {
+  } catch (error) {
+    console.error("Turnstile Siteverify request failed:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
     return NextResponse.json(
       {
         message:
@@ -69,6 +77,14 @@ export async function POST(req: NextRequest) {
     result.action !== expectedAction ||
     !expectedHostnames.has(result.hostname)
   ) {
+    console.error("Turnstile verification rejected:", {
+      success: result.success,
+      action: result.action,
+      expectedAction,
+      hostname: result.hostname,
+      hostnameAllowed: expectedHostnames.has(result.hostname),
+      errors: result["error-codes"],
+    });
     return NextResponse.json(
       {
         message:
@@ -150,8 +166,10 @@ export async function POST(req: NextRequest) {
       { message: "Email sent successfully" },
       { status: 200 },
     );
-  } catch (error: any) {
-    console.error("Error sending email:", error);
+  } catch (error) {
+    console.error("Error sending email:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
     return NextResponse.json(
       { message: "We couldn't send your message. Please try again later." },
       { status: 500 },
