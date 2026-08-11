@@ -1,17 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { parseEnvList } from "@/lib/PraseEnvHelpers";
+import { generatePdfBuffer } from "@/lib/utils/generatePdfBuffer";
 
 export async function POST(req: NextRequest) {
   try {
-    const { filename, file } = await req.json(); // parse JSON from request body
+    // Read request body ONCE
+    const { applicationData, jobTitle, jobLocation } = await req.json();
 
-    if (!filename || !file) {
+    if (!applicationData || !jobTitle || !jobLocation) {
       return NextResponse.json(
-        { message: "Missing filename or file in request body" },
+        { message: "Missing application data in request body" },
         { status: 400 },
       );
     }
+
+    const pdfBuffer = await generatePdfBuffer(applicationData, {
+      jobTitle,
+      jobLocation,
+    });
+    const safeFilePart = (value: string) =>
+      value
+        .trim()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-zA-Z0-9-]/g, "");
+    const filename = `${safeFilePart(applicationData.fname)}-${safeFilePart(applicationData.lname)}-${safeFilePart(jobTitle || "Application")}.pdf`;
 
     const from = process.env.EMPLOYEE_APP_SMTP_FROM_EMAIL;
     const to = parseEnvList(process.env.EMPLOYEE_APP_SMTP_TO_EMAIL);
@@ -29,30 +42,49 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    await transporter.verify(); // optional: verify connection
+    try {
+      await transporter.verify(); // optional: verify connection
 
-    await transporter.sendMail({
-      from,
-      to,
-      subject,
-      text: body,
-      attachments: [
+      await transporter.sendMail({
+        from,
+        to,
+        subject,
+        text: body,
+        attachments: [
+          {
+            filename,
+            content: pdfBuffer, // already a Buffer
+            contentType: "application/pdf",
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("Employee application EMAIL failed:", {
+        message: error instanceof Error ? error.message : "Unknown error",
+      });
+
+      return NextResponse.json(
         {
-          filename,
-          content: Buffer.from(file, "base64"), // convert base64 string to buffer
-          contentType: "application/pdf",
+          message:
+            "The application was processed, but the email could not be sent.",
         },
-      ],
-    });
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(
       { message: "Email sent successfully" },
       { status: 200 },
     );
-  } catch (error: any) {
-    console.error("Error sending email:", error);
+  } catch (error) {
+    console.error("Employee application PROCESSING failed:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
+
     return NextResponse.json(
-      { message: error.message || "An unknown error occurred" },
+      {
+        message: "The application could not be processed.",
+      },
       { status: 500 },
     );
   }

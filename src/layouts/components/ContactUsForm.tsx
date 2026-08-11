@@ -3,11 +3,13 @@
 import { FormEvent, useState } from "react";
 import ErrorAlert from "@/partials/ErrorAlert";
 import SuccessMessage from "@/partials/SubmissionMessage";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const ContactUsForm = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isFormSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -16,13 +18,23 @@ const ContactUsForm = () => {
 
     try {
       const formData = new FormData(event.currentTarget);
+
+      if (!turnstileToken) {
+        throw new Error("Please wait for verification to complete.");
+      }
+
+      formData.set("cf-turnstile-response", turnstileToken);
+
       const response = await fetch("/api/contact-form", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit the data. Please try again.");
+        const data = await response.json();
+        throw new Error(
+          data.message || "Unable to submit the form. Please try again.",
+        );
       } else {
         setFormSubmitted(true); // Show the overlay after success
       }
@@ -54,6 +66,7 @@ const ContactUsForm = () => {
           </h5>
           <div className="flex-grow border opacity-40 border-t border-light-green invisible lg:visible"></div>
         </div>
+
         <form method="POST" onSubmit={onSubmit}>
           <div className="flex flex-wrap md:-mx-6 mx-8">
             <div className="w-full md:w-1/2 px-1 md:mb-6 mb-3">
@@ -122,10 +135,34 @@ const ContactUsForm = () => {
             </div>
 
             <div className="px-1">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                options={{
+                  action: "contact",
+                  appearance: "always",
+                  theme: "light",
+                  refreshExpired: "auto",
+                  refreshTimeout: "auto",
+                  retry: "auto",
+                }}
+                onSuccess={(token) => {
+                  setTurnstileToken(token);
+                  setError(null);
+                }}
+                onExpire={() => setTurnstileToken(null)}
+                onError={(errorCode) => {
+                  console.error("Turnstile error:", errorCode);
+
+                  setTurnstileToken(null);
+                  setError(
+                    "Verification failed. Please refresh the page and try again.",
+                  );
+                }}
+              />
               <button
                 type="submit"
-                className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full"
-                disabled={isLoading}
+                className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:border-primary"
+                disabled={isLoading || !turnstileToken}
               >
                 <svg
                   aria-hidden="true"
