@@ -2673,6 +2673,9 @@ const EmployeeApplicationForm = ({
                   action: "job-application",
                   appearance: "always",
                   theme: "light",
+                  refreshExpired: "auto",
+                  refreshTimeout: "auto",
+                  retry: "auto",
                 }}
                 onSuccess={(token) => {
                   setTurnstileToken(token);
@@ -2688,7 +2691,7 @@ const EmployeeApplicationForm = ({
               />
               <button
                 type="submit"
-                className="bg-primary hover:bg-dark-grey text-white font-semibold py-2 px-6 border border-primary hover:border-transparent rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-primary hover:bg-dark-grey text-white font-semibold py-2 px-6 border border-primary hover:border-transparent rounded disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:border-primary"
                 disabled={isLoading || !turnstileToken}
               >
                 <svg

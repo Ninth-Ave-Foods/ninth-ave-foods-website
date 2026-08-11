@@ -141,6 +141,9 @@ const ContactUsForm = () => {
                   action: "contact",
                   appearance: "always",
                   theme: "light",
+                  refreshExpired: "auto",
+                  refreshTimeout: "auto",
+                  retry: "auto",
                 }}
                 onSuccess={(token) => {
                   setTurnstileToken(token);
@@ -156,7 +159,7 @@ const ContactUsForm = () => {
               />
               <button
                 type="submit"
-                className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:border-primary"
                 disabled={isLoading || !turnstileToken}
               >
                 <svg
