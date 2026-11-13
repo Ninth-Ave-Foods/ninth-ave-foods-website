@@ -4,7 +4,6 @@ import { parseEnvList } from "@/lib/PraseEnvHelpers";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
-  console.log("FORM DATA: ", formData);
   const entityType = formData.get("entityType");
   const operatingStatus = formData.get("operatingStatus");
   const outOfServiceDate = formData.get("outOfServiceDate");
@@ -38,93 +37,93 @@ export async function POST(req: NextRequest) {
   // Turnstile validation
   // -----------------------------
 
-  // const token = formData.get("cf-turnstile-response");
-  // const expectedAction = "carrier";
-  // const expectedHostnames = new Set(
-  //   (process.env.TURNSTILE_HOSTNAMES ?? "")
-  //     .split(",")
-  //     .map((hostname) => hostname.trim())
-  //     .filter(Boolean),
-  // );
+  const token = formData.get("cf-turnstile-response");
+  const expectedAction = "carrier";
+  const expectedHostnames = new Set(
+    (process.env.TURNSTILE_HOSTNAMES ?? "")
+      .split(",")
+      .map((hostname) => hostname.trim())
+      .filter(Boolean),
+  );
 
-  // if (
-  //   typeof token !== "string" ||
-  //   token.length === 0 ||
-  //   token.length > 2048 ||
-  //   expectedHostnames.size === 0
-  // ) {
-  //   console.error("Turnstile validation failed before Siteverify:", {
-  //     hasToken: typeof token === "string" && token.length > 0,
-  //     tokenTooLong: typeof token === "string" && token.length > 2048,
-  //     hasExpectedHostnames: expectedHostnames.size > 0,
-  //   });
-  //   return NextResponse.json(
-  //     {
-  //       message:
-  //         "We couldn't verify your submission. Please refresh the page and try again.",
-  //     },
-  //     { status: 403 },
-  //   );
-  // }
+  if (
+    typeof token !== "string" ||
+    token.length === 0 ||
+    token.length > 2048 ||
+    expectedHostnames.size === 0
+  ) {
+    console.error("Turnstile validation failed before Siteverify:", {
+      hasToken: typeof token === "string" && token.length > 0,
+      tokenTooLong: typeof token === "string" && token.length > 2048,
+      hasExpectedHostnames: expectedHostnames.size > 0,
+    });
+    return NextResponse.json(
+      {
+        message:
+          "We couldn't verify your submission. Please refresh the page and try again.",
+      },
+      { status: 403 },
+    );
+  }
 
-  // let result;
+  let result;
 
-  // try {
-  //   const r = await fetch(
-  //     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-  //     {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //       signal: AbortSignal.timeout(10_000),
-  //       body: new URLSearchParams({
-  //         secret: process.env.TURNSTILE_SECRET!,
-  //         response: token,
-  //       }),
-  //     },
-  //   );
-  //   if (!r.ok) throw new Error(`siteverify ${r.status}`);
-  //   result = await r.json();
-  // } catch (error) {
-  //   console.error("Turnstile Siteverify request failed:", {
-  //     message: error instanceof Error ? error.message : "Unknown error",
-  //   });
-  //   return NextResponse.json(
-  //     {
-  //       message:
-  //         "We couldn't verify your submission. Please refresh the page and try again.",
-  //     },
-  //     { status: 403 },
-  //   );
-  // }
-  // if (
-  //   !result.success ||
-  //   result.action !== expectedAction ||
-  //   !expectedHostnames.has(result.hostname)
-  // ) {
-  //   console.error("Turnstile verification rejected:", {
-  //     success: result.success,
-  //     action: result.action,
-  //     expectedAction,
-  //     hostname: result.hostname,
-  //     hostnameAllowed: expectedHostnames.has(result.hostname),
-  //     errors: result["error-codes"],
-  //   });
-  //   return NextResponse.json(
-  //     {
-  //       message:
-  //         "We couldn't verify your submission. Please refresh the page and try again.",
-  //     },
-  //     { status: 403 },
-  //   );
-  // }
+  try {
+    const r = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        signal: AbortSignal.timeout(10_000),
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET!,
+          response: token,
+        }),
+      },
+    );
+    if (!r.ok) throw new Error(`siteverify ${r.status}`);
+    result = await r.json();
+  } catch (error) {
+    console.error("Turnstile Siteverify request failed:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
+    return NextResponse.json(
+      {
+        message:
+          "We couldn't verify your submission. Please refresh the page and try again.",
+      },
+      { status: 403 },
+    );
+  }
+  if (
+    !result.success ||
+    result.action !== expectedAction ||
+    !expectedHostnames.has(result.hostname)
+  ) {
+    console.error("Turnstile verification rejected:", {
+      success: result.success,
+      action: result.action,
+      expectedAction,
+      hostname: result.hostname,
+      hostnameAllowed: expectedHostnames.has(result.hostname),
+      errors: result["error-codes"],
+    });
+    return NextResponse.json(
+      {
+        message:
+          "We couldn't verify your submission. Please refresh the page and try again.",
+      },
+      { status: 403 },
+    );
+  }
 
   try {
     // -----------------------------------
     // Turnstile passed — send the email
     // -----------------------------------
 
-    const from = process.env.CONTACT_FORM_SMTP_FROM_EMAIL;
-    const to = parseEnvList(process.env.CONTACT_FORM_SMTP_TO_EMAIL);
+    const from = process.env.CARRIER_FORM_SMTP_FROM_EMAIL;
+    const to = parseEnvList(process.env.CARRIER_FORM_SMTP_TO_EMAIL);
 
     const escapeHtml = (value: FormDataEntryValue | null): string => {
       if (typeof value !== "string" || !value.trim()) {

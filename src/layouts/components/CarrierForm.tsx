@@ -12,7 +12,6 @@ const CarrierForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isFormSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,11 +21,11 @@ const CarrierForm = () => {
     try {
       const formData = new FormData(event.currentTarget);
 
-      // if (!turnstileToken) {
-      //   throw new Error("Please wait for verification to complete.");
-      // }
+      if (!turnstileToken) {
+        throw new Error("Please wait for verification to complete.");
+      }
 
-      // formData.set("cf-turnstile-response", turnstileToken);
+      formData.set("cf-turnstile-response", turnstileToken);
 
       const response = await fetch("/api/carrier-form", {
         method: "POST",
@@ -51,38 +50,147 @@ const CarrierForm = () => {
   }
 
   return (
-    <div className="animate-fade ease-in mx-auto p-6 md:col-7 mb-20 md:mb-0">
+    <div className="animate-fade ease-in mx-auto mb-16 mt-6 w-full max-w-3xl rounded-2xl bg-light-grey p-2 sm:mt-10 sm:p-4">
       {isFormSubmitted && (
         <SuccessMessage
           title="Thank you for submitting"
-          return_to_link="/carrier-inquiries"
+          return_to_link="/carrier-form"
           image="/images/send-mail.png"
           message="Your form submission has been received."
           submessage="We will be in touch with you shortly."
         />
       )}
 
-      <form method="POST" onSubmit={onSubmit}>
-        <div className="flex flex-wrap md:-mx-6 mx-8">
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="entityType"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              Entity Type <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="entityType"
-              name="entityType"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="	e.g. Carrier or Broker"
-              type="text"
-              required
-            />
-          </div>
+      <form
+        method="POST"
+        onSubmit={onSubmit}
+        className="space-y-6 rounded-xl border border-mischka bg-white p-4 shadow-sm sm:p-8 max-[400px]:[&_.form-label]:text-sm max-[400px]:[&_.form-label]:leading-snug max-[400px]:[&_input.form-input]:px-2 max-[400px]:[&_input.form-input::placeholder]:text-xs"
+      >
+        <section aria-labelledby="carrier-company" className="space-y-4">
+          <h2
+            id="carrier-company"
+            className="border-l-4 border-primary pl-3 text-lg font-semibold text-dark-grey sm:text-xl"
+          >
+            Company Information
+          </h2>
 
-          <div className="flex w-full flex-row gap-8 pb-4">
+          <div className="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-6">
+            <div className="flex min-w-0 flex-col gap-1">
+              <label
+                htmlFor="legalName"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                Legal Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="legalName"
+                name="legalName"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="e.g. Acme Transport LLC"
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1">
+              <label
+                htmlFor="dbaName"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                DBA Name
+              </label>
+              <input
+                id="dbaName"
+                name="dbaName"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="e.g. Acme Freight"
+                type="text"
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1">
+              <label
+                htmlFor="entityType"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                Transportation Company Type{" "}
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="entityType"
+                name="entityType"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="e.g. Carrier or Broker"
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1">
+              <label
+                htmlFor="phone"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                Phone <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="(555) 010-0123"
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1 md:col-span-2">
+              <label
+                htmlFor="physicalAddress"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                Physical Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="physicalAddress"
+                name="physicalAddress"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="Street address, city, state, ZIP"
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-1 md:col-span-2">
+              <label
+                htmlFor="mailingAddress"
+                className="form-label text-dark-grey"
+                style={{ marginBottom: 2 }}
+              >
+                Mailing Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="mailingAddress"
+                name="mailingAddress"
+                className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
+                placeholder="Street address or PO Box, city, state, ZIP"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="carrier-fleet"
+          className="space-y-1 border-t border-mischka pt-6"
+        >
+          <h2
+            id="carrier-fleet"
+            className="mb-4 border-l-4 border-primary pl-3 text-lg font-semibold text-dark-grey sm:text-xl"
+          >
+            Carrier & Fleet Details
+          </h2>
+          <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:gap-3">
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <label
                 htmlFor="operatingStatus"
@@ -119,98 +227,7 @@ const CarrierForm = () => {
               />
             </div>
           </div>
-
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="legalName"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              Legal Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="legalName"
-              name="legalName"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="e.g. Acme Transport LLC"
-              type="text"
-              required
-            />
-          </div>
-
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="dbaName"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              DBA Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="dbaName"
-              name="dbaName"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="e.g. Acme Freight"
-              type="text"
-              required
-            />
-          </div>
-
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="physicalAddress"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              Physical Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="physicalAddress"
-              name="physicalAddress"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="Street address, city, state, ZIP"
-              type="text"
-              required
-            />
-          </div>
-
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="phone"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              Phone <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="phone"
-              name="phone"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="(555) 010-0123"
-              type="text"
-              required
-            />
-          </div>
-
-          <div className="flex w-full flex-col gap-1 pb-4">
-            <label
-              htmlFor="mailingAddress"
-              className="form-label text-dark-grey"
-              style={{ marginBottom: 2 }}
-            >
-              Mailing Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="mailingAddress"
-              name="mailingAddress"
-              className="w-full form-input bg-light-grey shadow-sm placeholder-gray-400 h-10 border-mischka"
-              placeholder="Street address or PO Box, city, state, ZIP"
-              type="text"
-              required
-            />
-          </div>
-
-          <div className="flex w-full flex-row gap-8 pb-4">
+          <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:gap-3">
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <label
                 htmlFor="usdotNumber"
@@ -247,8 +264,7 @@ const CarrierForm = () => {
               />
             </div>
           </div>
-
-          <div className="flex w-full flex-row gap-8 pb-4">
+          <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:gap-3">
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <label
                 htmlFor="authorityIds"
@@ -285,8 +301,7 @@ const CarrierForm = () => {
               />
             </div>
           </div>
-
-          <div className="flex w-full flex-row gap-8 pb-4">
+          <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:gap-3">
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <label
                 htmlFor="powerUnits"
@@ -323,8 +338,7 @@ const CarrierForm = () => {
               />
             </div>
           </div>
-
-          <div className="flex w-full flex-row gap-8 pb-4">
+          <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:gap-3">
             <div className="flex min-w-0 flex-1 flex-col gap-1">
               <label
                 htmlFor="mcs150Date"
@@ -361,7 +375,6 @@ const CarrierForm = () => {
               />
             </div>
           </div>
-
           <div className="flex w-full flex-col gap-1 pb-4">
             <label
               htmlFor="operationClass"
@@ -379,17 +392,24 @@ const CarrierForm = () => {
               required
             />
           </div>
+        </section>
 
-          <div className="flex-row">
-            <label
-              htmlFor="mainContact"
-              className="form-label text-dark-grey pb-1"
-              style={{ marginBottom: 1 }}
-            >
+        <section
+          aria-labelledby="carrier-contacts"
+          className="space-y-1 border-t border-mischka pt-6"
+        >
+          <h2
+            id="carrier-contacts"
+            className="mb-4 border-l-4 border-primary pl-3 text-lg font-semibold text-dark-grey sm:text-xl"
+          >
+            Contacts
+          </h2>
+          <div className="w-full">
+            <h3 className="mb-2 text-base font-semibold text-dark-grey">
               Main Contact
-            </label>
+            </h3>
 
-            <div className="flex w-full flex-row gap-8 pb-4">
+            <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:flex-col max-[400px]:gap-3">
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <label
                   htmlFor="mainContactName"
@@ -445,17 +465,12 @@ const CarrierForm = () => {
               </div>
             </div>
           </div>
-
-          <div className="flex-row">
-            <label
-              htmlFor="afterHrsContact"
-              className="form-label text-dark-grey pb-1"
-              style={{ marginBottom: 1 }}
-            >
+          <div className="w-full">
+            <h3 className="mb-2 text-base font-semibold text-dark-grey">
               After Hours Contact
-            </label>
+            </h3>
 
-            <div className="flex w-full flex-row gap-8 pb-4">
+            <div className="flex w-full flex-row gap-8 pb-4 max-[400px]:flex-col max-[400px]:gap-3">
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <label
                   htmlFor="afterHrsName"
@@ -511,7 +526,18 @@ const CarrierForm = () => {
               </div>
             </div>
           </div>
+        </section>
 
+        <section
+          aria-labelledby="carrier-compliance"
+          className="space-y-1 border-t border-mischka pt-6"
+        >
+          <h2
+            id="carrier-compliance"
+            className="mb-4 border-l-4 border-primary pl-3 text-lg font-semibold text-dark-grey sm:text-xl"
+          >
+            Compliance Documents
+          </h2>
           <div className="flex w-full flex-col gap-1 pb-4">
             <label
               htmlFor="atcmCompliance"
@@ -532,12 +558,14 @@ const CarrierForm = () => {
               labelIdle='Drag files here or <span class="filepond--label-action">Browse</span>'
             />
           </div>
+        </section>
 
-          <div className="px-1">
-            {/* <Turnstile
+        <div className="space-y-4 border-t border-mischka pt-6">
+          <div className="overflow-x-auto">
+            <Turnstile
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
               options={{
-                action: "contact",
+                action: "carrier",
                 appearance: "always",
                 theme: "light",
                 refreshExpired: "auto",
@@ -557,42 +585,44 @@ const CarrierForm = () => {
                   "Verification failed. Please refresh the page and try again.",
                 );
               }}
-            /> */}
-            <button
-              type="submit"
-              className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:border-primary"
-              // disabled={isLoading || !turnstileToken}
-            >
-              <svg
-                aria-hidden="true"
-                className={`${
-                  isLoading
-                    ? "inline w-6 h-6 text-gray-200 animate-spin fill-blue-600 mr-2"
-                    : "hidden"
-                }`}
-                viewBox="0 0 100 101"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                  fill="currentFill"
-                />
-              </svg>
-
-              {isLoading ? "Loading..." : "Send message"}
-            </button>
+            />
           </div>
+          <button
+            type="submit"
+            className="btn btn-primary hover:bg-dark-grey hover:border-dark-grey shadow-sm w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:border-primary"
+            disabled={isLoading || !turnstileToken}
+          >
+            <svg
+              aria-hidden="true"
+              className={`${
+                isLoading
+                  ? "inline w-6 h-6 text-gray-200 animate-spin fill-blue-600 mr-2"
+                  : "hidden"
+              }`}
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor"
+              />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill"
+              />
+            </svg>
+
+            {isLoading ? "Submitting..." : "Submit Carrier Information"}
+          </button>
         </div>
       </form>
 
-      <div className="pt-10">
-        {error && <ErrorAlert error_message={error} />}
-      </div>
+      {error && (
+        <div className="mt-4">
+          <ErrorAlert error_message={error} />
+        </div>
+      )}
     </div>
   );
 };
