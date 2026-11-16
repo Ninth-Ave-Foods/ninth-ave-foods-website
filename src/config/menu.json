@@ -88,6 +88,7 @@
       "name": "About Us",
       "url": "/about"
     },
+
     {
       "name": "Career",
       "url": "/career"
@@ -95,6 +96,10 @@
     {
       "name": "Contact Us",
       "url": "/contact"
+    },
+    {
+      "name": "For Carriers",
+      "url": "/carrier-form"
     }
   ]
 }
