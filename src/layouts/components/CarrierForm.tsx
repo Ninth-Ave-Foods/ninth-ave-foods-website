@@ -544,7 +544,7 @@ const CarrierForm = () => {
               className="form-label text-dark-grey"
               style={{ marginBottom: 2 }}
             >
-              TRU ATCM Compliance <span className="text-red-500">*</span>
+              TRU ATCM Compliance
             </label>
             <p className="text-dark-grey" style={{ marginBottom: 2 }}>
               Please attach any other certificates or forms needing completion
@@ -553,8 +553,8 @@ const CarrierForm = () => {
             <FilePond
               name="files"
               allowMultiple
+              maxFiles={4}
               storeAsFile
-              required
               labelIdle='Drag files here or <span class="filepond--label-action">Browse</span>'
             />
           </div>

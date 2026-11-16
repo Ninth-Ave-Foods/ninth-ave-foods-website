@@ -46,11 +46,17 @@ export async function POST(req: NextRequest) {
       .filter(Boolean),
   );
 
+  const turnstileSecret = process.env.TURNSTILE_SECRET;
+  const isLocalTurnstileTest =
+    process.env.NODE_ENV === "development" &&
+    turnstileSecret === "1x0000000000000000000000000000000AA";
+
   if (
     typeof token !== "string" ||
     token.length === 0 ||
     token.length > 2048 ||
-    expectedHostnames.size === 0
+    !turnstileSecret ||
+    (!isLocalTurnstileTest && expectedHostnames.size === 0)
   ) {
     console.error("Turnstile validation failed before Siteverify:", {
       hasToken: typeof token === "string" && token.length > 0,
@@ -96,9 +102,10 @@ export async function POST(req: NextRequest) {
     );
   }
   if (
-    !result.success ||
-    result.action !== expectedAction ||
-    !expectedHostnames.has(result.hostname)
+    result.success !== true ||
+    (!isLocalTurnstileTest &&
+      (result.action !== expectedAction ||
+        !expectedHostnames.has(result.hostname)))
   ) {
     console.error("Turnstile verification rejected:", {
       success: result.success,
